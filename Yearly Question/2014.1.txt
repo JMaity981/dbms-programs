@@ -1,0 +1,85 @@
+SQL> create table student2(s_name char (10), physics number (3), chemistry number (3), mathematics number (3), comp_sc number (3), total number (4));
+
+Table created.
+
+SQL> insert into student2 values('sourav', '85', '72', '70', '50', null);
+
+1 row created.
+
+SQL> insert into student2 values('susovan', '87', '76', '78', '59', null);
+
+1 row created.
+
+SQL> insert into student2 values('souravda', '90', '78', '79', '20', null);
+
+1 row created.
+
+SQL> insert into student2 values('suvonkar', '50', '60', '90', '40', null);
+
+1 row created.
+
+SQL> insert into student2 values('rakesh', '30', '50', '70', '30', null);
+
+1 row created.
+
+SQL> insert into student2 values('rahul', '65', '45', '55', '30', null);
+
+1 row created.
+
+SQL> insert into student2 values('harun', '30', '33', '45', '25', null);
+
+1 row created.
+
+SQL> select * from student2;
+
+S_NAME        PHYSICS  CHEMISTRY MATHEMATICS    COMP_SC      TOTAL              
+---------- ---------- ---------- ----------- ---------- ----------              
+sourav             85         72          70         50                         
+susovan            87         76          78         59                         
+souravda           90         78          79         20                         
+suvonkar           50         60          90         40                         
+rakesh             30         50          70         30                         
+rahul              65         45          55         30                         
+harun              30         33          45         25                         
+
+7 rows selected.
+
+SQL> update student2 set total=physics+chemistry+mathematics+cpmp_sc;
+update student2 set total=physics+chemistry+mathematics+cpmp_sc
+                                                        *
+ERROR at line 1:
+ORA-00904: "CPMP_SC": invalid identifier 
+
+
+SQL> update student2 set total=physics+chemistry+mathematics+comp_sc;
+
+7 rows updated.
+
+SQL> select * from student2;
+
+S_NAME        PHYSICS  CHEMISTRY MATHEMATICS    COMP_SC      TOTAL              
+---------- ---------- ---------- ----------- ---------- ----------              
+sourav             85         72          70         50        277              
+susovan            87         76          78         59        300              
+souravda           90         78          79         20        267              
+suvonkar           50         60          90         40        240              
+rakesh             30         50          70         30        180              
+rahul              65         45          55         30        195              
+harun              30         33          45         25        133              
+
+7 rows selected.
+
+SQL> select s_name from student2 where total>350;
+
+no rows selected
+
+SQL> select s_name from student2 where total>200;
+
+S_NAME                                                                          
+----------                                                                      
+sourav                                                                          
+susovan                                                                         
+souravda                                                                        
+suvonkar                                                                        
+
+SQL> spool off;

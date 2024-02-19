@@ -1,0 +1,133 @@
+SQL> CONNECT
+Enter user-name: SYSTEM
+Connected.
+SQL> INSERT INTO BRANCH VALUES('STATE BANK','TAMLUK''850000000');
+INSERT INTO BRANCH VALUES('STATE BANK','TAMLUK''850000000')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> INSERT INTO BRANCH VALUES('STATE BANK','TAMLUK''850000000');
+INSERT INTO BRANCH VALUES('STATE BANK','TAMLUK''850000000')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> INSERT INTO BRANCH VALUES('STATE BANK','TAMLUK','850000000');
+
+1 row created.
+
+SQL> INSERT INTO BRANCH VALUES('STATE BANK','HALDIA','750000000');
+
+1 row created.
+
+SQL> INSERT INTO BRANCH VALUES('AXIS BANK','MANIKTALA','600000000');
+
+1 row created.
+
+SQL> INSERT INTO BRANCH VALUES('PANJAB','TAMLUK','700000000');
+
+1 row created.
+
+SQL> INSERT INTO BRANCH VALUES('PANJAB','MECHEDA','500000000');
+
+1 row created.
+
+SQL> INSERT INTO BRANCH VALUES('CENTRAL','TAMLUK','360000000');
+
+1 row created.
+
+SQL> SELECT * FROM BRANCH;
+
+B_NAME          CITY                 ASSET                                      
+--------------- --------------- ----------                                      
+STATE BANK      TAMLUK           850000000                                      
+STATE BANK      HALDIA           750000000                                      
+AXIS BANK       MANIKTALA        600000000                                      
+PANJAB          TAMLUK           700000000                                      
+PANJAB          MECHEDA          500000000                                      
+CENTRAL         TAMLUK           360000000                                      
+
+6 rows selected.
+
+SQL> INSERT INTO CUSTOMER VALUES('JAYANTA','PAIRACHALI','TAMLUK');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES('SOUROV','SUTAHATA','HALDIA');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES('NIL','CHAITTANAPUR','HALDIA');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES('SWAGATA','DURGACHAK','HALDIA');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES('KRISHNENDU','DHARINDA','TAMLUK');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES('BAPPA','MECHEDA','MECHEDA');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES('SAHABAJ','NIMTOURI','TAMLUK');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES('SULTAN','KOLAGHAT','KOLAGHAT');
+
+1 row created.
+
+SQL> SELECT * FROM CUSTOMER;
+
+C_NAME          ADDRESS                   CITY                                  
+--------------- ------------------------- ---------------                       
+JAYANTA         PAIRACHALI                TAMLUK                                
+SOUROV          SUTAHATA                  HALDIA                                
+NIL             CHAITTANAPUR              HALDIA                                
+SWAGATA         DURGACHAK                 HALDIA                                
+KRISHNENDU      DHARINDA                  TAMLUK                                
+BAPPA           MECHEDA                   MECHEDA                               
+SAHABAJ         NIMTOURI                  TAMLUK                                
+SULTAN          KOLAGHAT                  KOLAGHAT                              
+
+8 rows selected.
+
+SQL> INSERT INTO LOAN VALUES('AXIS','L1459','100000');
+
+1 row created.
+
+SQL> INSERT INTO LOAN VALUES('CENTRAL','L2356','350000');
+
+1 row created.
+
+SQL> INSERT INTO LOAN VALUES('STATE','L1596','500000');
+
+1 row created.
+
+SQL> INSERT INTO LOAN VALUES('STATE','L3896','50000');
+
+1 row created.
+
+SQL> INSERT INTO LOAN VALUES('PANJAB','L6321','70000');
+
+1 row created.
+
+SQL> SELECT * FROM LOAN;
+
+B_NAME          LOAN_NO     AMOUNT                                              
+--------------- ------- ----------                                              
+AXIS            L1459       100000                                              
+CENTRAL         L2356       350000                                              
+STATE           L1596       500000                                              
+STATE           L3896        50000                                              
+PANJAB          L6321        70000                                              
+
+SQL> 
+SQL> SPOOL OFF;

@@ -1,0 +1,57 @@
+SQL> create table student4(s_name char(10),physics number(3),chemistry number(3),mathematics number(3),comp_sc number(3),total number(4));
+
+Table created.
+
+SQL> insert into student4 values('sourav','87','81','90','87',null);
+
+1 row created.
+
+SQL> insert into student4 values('jayanta','57','61','40','67',null);
+
+1 row created.
+
+SQL> insert into student4 values('nilanjan','77','71','80','77',null);
+
+1 row created.
+
+SQL> insert into student4 values('subrata','57','61','50','57',null);
+
+1 row created.
+
+SQL> insert into student4 values('suvankar','77','81','80','77',null);
+
+1 row created.
+
+SQL> select * from student4;
+
+S_NAME        PHYSICS  CHEMISTRY MATHEMATICS    COMP_SC      TOTAL              
+---------- ---------- ---------- ----------- ---------- ----------              
+sourav             87         81          90         87                         
+jayanta            57         61          40         67                         
+nilanjan           77         71          80         77                         
+subrata            57         61          50         57                         
+suvankar           77         81          80         77                         
+
+SQL> update student4 set total=(physics+chemistry+mathematics+comp_sc);
+
+5 rows updated.
+
+SQL> select * from student4;
+
+S_NAME        PHYSICS  CHEMISTRY MATHEMATICS    COMP_SC      TOTAL              
+---------- ---------- ---------- ----------- ---------- ----------              
+sourav             87         81          90         87        345              
+jayanta            57         61          40         67        225              
+nilanjan           77         71          80         77        305              
+subrata            57         61          50         57        225              
+suvankar           77         81          80         77        315              
+
+SQL> select s_name from student4 where total>300;
+
+S_NAME                                                                          
+----------                                                                      
+sourav                                                                          
+nilanjan                                                                        
+suvankar                                                                        
+
+SQL> spool off

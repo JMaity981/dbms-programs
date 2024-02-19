@@ -1,0 +1,79 @@
+SQL> create table employees(e_no varchar(4),e_name char(20),address char(20),basic_salary number(7),job_status varchar(15));
+
+Table created.
+
+SQL> insert into employees values('03','sourav mishra','kulapara','150000','designer');
+
+1 row created.
+
+SQL> insert into employees values('04','sourav jana','sutahata','10000','tester');
+
+1 row created.
+
+SQL> insert into employees values('05','subrata bera','haldia','1000','staff');
+
+1 row created.
+
+SQL> insert into employees values('06','jayanta maity','tamluk','206700','maneger');
+
+1 row created.
+
+SQL> insert into employees values('06','nilanjan chakraborty','rampur','67000','sels man');
+
+1 row created.
+
+SQL> insert into employees values('07','nilanjan chakraboryn','geokhali','70000','sels man');
+
+1 row created.
+
+SQL> insert into employees values('07','arup khan','teropekha','40000','sels man');
+
+1 row created.
+
+SQL> select * from employees;
+
+E_NO E_NAME               ADDRESS              BASIC_SALARY JOB_STATUS          
+---- -------------------- -------------------- ------------ ---------------     
+03   sourav mishra        kulapara                   150000 designer            
+04   sourav jana          sutahata                    10000 tester              
+05   subrata bera         haldia                       1000 staff               
+06   jayanta maity        tamluk                     206700 maneger             
+06   nilanjan chakraborty rampur                      67000 sels man            
+07   nilanjan chakraboryn geokhali                    70000 sels man            
+07   arup khan            teropekha                   40000 sels man            
+
+7 rows selected.
+
+SQL> select e_name from employees where mod(e_no,2)=0;
+
+E_NAME                                                                          
+--------------------                                                            
+sourav jana                                                                     
+jayanta maity                                                                   
+nilanjan chakraborty                                                            
+
+SQL> select e_name from employees where e_name like '%n';
+
+E_NAME                                                                          
+--------------------                                                            
+nilanjan chakraboryn                                                            
+
+SQL> alter table employees drop column job_status;
+
+Table altered.
+
+SQL> select * from employees;
+
+E_NO E_NAME               ADDRESS              BASIC_SALARY                     
+---- -------------------- -------------------- ------------                     
+03   sourav mishra        kulapara                   150000                     
+04   sourav jana          sutahata                    10000                     
+05   subrata bera         haldia                       1000                     
+06   jayanta maity        tamluk                     206700                     
+06   nilanjan chakraborty rampur                      67000                     
+07   nilanjan chakraboryn geokhali                    70000                     
+07   arup khan            teropekha                   40000                     
+
+7 rows selected.
+
+SQL> spool off

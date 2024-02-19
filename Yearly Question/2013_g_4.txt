@@ -1,0 +1,46 @@
+SQL> select * from employees;
+
+E_NO    E_NAME     ADDRESS              BASIC_SALARY JOB_STATUS                 
+------- ---------- -------------------- ------------ ----------                 
+1       tapan      chandipur                    3000 dataentry                  
+2       sapan      mechada                      4000 homeguard                  
+3       kumar      chowkhali                    7000 teacher                    
+4       hero       kulapara                     8000 partime                    
+4       hero       kulapara                     8000 partime                    
+5       ratan      tamluk                       9000 partner                    
+
+6 rows selected.
+
+SQL> select e_name from employees where e_no%2=0;
+select e_name from employees where e_no%2=0
+                                       *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> select e_name from employees where mod(e_no,2)=0;
+
+E_NAME                                                                          
+----------                                                                      
+sapan                                                                           
+hero                                                                            
+hero                                                                            
+
+SQL> alter table employees drop column job_status;
+
+Table altered.
+
+SQL> select * from employees;
+
+E_NO    E_NAME     ADDRESS              BASIC_SALARY                            
+------- ---------- -------------------- ------------                            
+1       tapan      chandipur                    3000                            
+2       sapan      mechada                      4000                            
+3       kumar      chowkhali                    7000                            
+4       hero       kulapara                     8000                            
+4       hero       kulapara                     8000                            
+5       ratan      tamluk                       9000                            
+
+6 rows selected.
+
+SQL> spool off;

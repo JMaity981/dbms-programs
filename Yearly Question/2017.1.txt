@@ -1,0 +1,164 @@
+SQL> select * from patient4;
+
+P_ID     P_NAME          P_AGE P_ADDRESS                                        
+-------- ---------- ---------- --------------------                             
+111      suman              20 city_chandipur                                   
+112      souman             21 city_tamluk                                      
+113      rakesh             24 city_howra                                       
+114      ankit              54 city_tamluk                                      
+
+SQL> select * from doctor4;
+
+      D_ID D_NAME     D_ADDRESS                                                 
+---------- ---------- --------------------                                      
+       333 anil       city_kolkata                                              
+       205 nilanjon   city_holdia                                               
+       206 nilanjona  city_dilhi                                                
+
+SQL> select * from admitted4;
+
+      P_ID DATE_OF_A                                                            
+---------- ---------                                                            
+       111 03-JUL-18                                                            
+       112 04-JUL-18                                                            
+       113 07-JUL-18                                                            
+       114 09-JUL-18                                                            
+
+SQL> select * from attent;
+
+      P_ID       D_ID                                                           
+---------- ----------                                                           
+       112        205                                                           
+       112        205                                                           
+       114        205                                                           
+       113        333                                                           
+       112        205                                                           
+
+SQL> select d_name from doctor4 d, patient4 p, attent a where d.d_id=a.d_id and a.p_id=p.p_id and p_id='111';
+select d_name from doctor4 d, patient4 p, attent a where d.d_id=a.d_id and a.p_id=p.p_id and p_id='111'
+                                                                                             *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> select d_name from doctor4 d, patient4 p, attent a where d.d_id=a.d_id and a.p_id=p.p_id and p.p_id='111';
+
+no rows selected
+
+SQL> select d_name from doctor4 d, patient4 p, attent a where d.d_id=a.d_id and a.p_id=p.p_id and p.p_id='112';
+
+D_NAME                                                                          
+----------                                                                      
+nilanjon                                                                        
+nilanjon                                                                        
+nilanjon                                                                        
+
+SQL> select d.d_id ,count * from doctor4 d, attent a where d.d_id=a.d_id group by a.d_id, a.p_id, d.d_id having count(a.d_id>2);
+select d.d_id ,count * from doctor4 d, attent a where d.d_id=a.d_id group by a.d_id, a.p_id, d.d_id having count(a.d_id>2)
+                       *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> select d.d_id ,count(*) from doctor4 d, attent a where d.d_id=a.d_id group by a.d_id, a.p_id, d.d_id having count(a.d_id>2);
+select d.d_id ,count(*) from doctor4 d, attent a where d.d_id=a.d_id group by a.d_id, a.p_id, d.d_id having count(a.d_id>2)
+                                                                                                                        *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> select d.d_id ,count(*) from doctor4 d, attent a where d.d_id=a.d_id group by a.d_id, a.p_id, d.d_id having count(a.d_id)>2;
+
+      D_ID   COUNT(*)                                                           
+---------- ----------                                                           
+       205          3                                                           
+
+SQL> select count(*) from (select d.d_id ,count(*) from doctor4 d, attent a where d.d_id=a.d_id group by a.d_id, a.p_id, d.d_id having count(a.d_id)>2);
+
+  COUNT(*)                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> select p_name from patient4 where p_address in(select d_address from doctor4 where d_id='205');
+
+no rows selected
+
+SQL> select p_name from patient4 where p_address in(select d_address from doctor4 where d_id='205');
+
+no rows selected
+
+SQL> insert into doctor4 values('143','jayanta', 'city_tamluk');
+
+1 row created.
+
+SQL> select p_name from patient4 where p_address in(select d_address from doctor4 where d_id='205');
+
+no rows selected
+
+SQL> select * from patient4;
+
+P_ID     P_NAME          P_AGE P_ADDRESS                                        
+-------- ---------- ---------- --------------------                             
+111      suman              20 city_chandipur                                   
+112      souman             21 city_tamluk                                      
+113      rakesh             24 city_howra                                       
+114      ankit              54 city_tamluk                                      
+
+SQL> select * from doctor4;
+
+      D_ID D_NAME     D_ADDRESS                                                 
+---------- ---------- --------------------                                      
+       333 anil       city_kolkata                                              
+       205 nilanjon   city_holdia                                               
+       206 nilanjona  city_dilhi                                                
+       143 jayanta    city_tamluk                                               
+
+SQL> select p_name from patient4 where p_address in(select d_address from doctor4 where d_id='205');
+
+no rows selected
+
+SQL> insert into doctor4 values('205','jayanta', 'city_tamluk');
+
+1 row created.
+
+SQL> select p_name from patient4 where p_address in(select d_address from doctor4 where d_id='205');
+
+P_NAME                                                                          
+----------                                                                      
+ankit                                                                           
+souman                                                                          
+
+SQL> select 8 from doctor4;
+
+         8                                                                      
+----------                                                                      
+         8                                                                      
+         8                                                                      
+         8                                                                      
+         8                                                                      
+         8                                                                      
+
+SQL> select * from doctor4;
+
+      D_ID D_NAME     D_ADDRESS                                                 
+---------- ---------- --------------------                                      
+       333 anil       city_kolkata                                              
+       205 nilanjon   city_holdia                                               
+       206 nilanjona  city_dilhi                                                
+       143 jayanta    city_tamluk                                               
+       205 jayanta    city_tamluk                                               
+
+SQL> select p_name from patient4 where p_address in(select d_address from doctor4 where d_id='205');
+
+P_NAME                                                                          
+----------                                                                      
+ankit                                                                           
+souman                                                                          
+
+SQL> select p_name from patient4 p, admitted4 a where p.p_id=a.p_id and date_of_admission='3-jul-18';
+
+P_NAME                                                                          
+----------                                                                      
+suman                                                                           
+
+SQL> spool off

@@ -1,0 +1,63 @@
+SQL> CREATE TABLE EMP3(E_NO NUMBER(5),E_NAME CHAR(12),DEPT_NAME CHAR(20),JOB_STATUS CHAR(15),SALARY NUMBER(10));
+
+Table created.
+
+SQL> INSERT INTO EMP3 VALUES('14236','TANUSHREE','COMPUTER SCIENCE','PROFESSOR','38000');
+
+1 row created.
+
+SQL> INSERT INTO EMP3 VALUES('98234','PALASH','COMPUTER SCIENCE','LAB TECHNISION','12000');
+
+1 row created.
+
+SQL> INSERT INTO EMP3 VALUES('74552','ASIT','MATH','LAB TECHNISION','13000');
+
+1 row created.
+
+SQL> INSERT INTO EMP3 VALUES('74563','MOHAN','CHEMISTRY','LAB TECHNISION','13500');
+
+1 row created.
+
+SQL> INSERT INTO EMP3 VALUES('74563','SURENDRA','CHEMISTRY','PROFESSOR','45000');
+
+1 row created.
+
+SQL> INSERT INTO EMP3 VALUES('14236','JAYANTA','COMPUTER SCIENCE','PROFESSOR','50000');
+
+1 row created.
+
+SQL> SELECT * FROM EMP3;
+
+      E_NO E_NAME       DEPT_NAME            JOB_STATUS          SALARY         
+---------- ------------ -------------------- --------------- ----------         
+     14236 TANUSHREE    COMPUTER SCIENCE     PROFESSOR            38000         
+     98234 PALASH       COMPUTER SCIENCE     LAB TECHNISION       12000         
+     74552 ASIT         MATH                 LAB TECHNISION       13000         
+     74563 MOHAN        CHEMISTRY            LAB TECHNISION       13500         
+     74563 SURENDRA     CHEMISTRY            PROFESSOR            45000         
+     14236 JAYANTA      COMPUTER SCIENCE     PROFESSOR            50000         
+
+6 rows selected.
+
+SQL> SELECT COUNT(DEPT_NAME)AS Emp3FromDept_nameComputerScience FROM EMP3 DEPT_NAME='COMPUTER SCIENCE';
+SELECT COUNT(DEPT_NAME)AS Emp3FromDept_nameComputerScience FROM EMP3 DEPT_NAME='COMPUTER SCIENCE'
+                          *
+ERROR at line 1:
+ORA-00972: identifier is too long 
+
+
+SQL> SELECT COUNT(DEPT_NAME)FROM EMP3 DEPT_NAME='COMPUTER SCIENCE';
+SELECT COUNT(DEPT_NAME)FROM EMP3 DEPT_NAME='COMPUTER SCIENCE'
+                                          *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT COUNT(DEPT_NAME)AS FROM EMP3 DEPT_NAME='COMPUTER SCIENCE';
+SELECT COUNT(DEPT_NAME)AS FROM EMP3 DEPT_NAME='COMPUTER SCIENCE'
+                                             *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SPOOL OFF;

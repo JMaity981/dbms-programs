@@ -1,0 +1,120 @@
+SQL> select * from  EMPS;
+
+E_N E_NAME     E_ADDRESS                                                        
+--- ---------- ----------                                                       
+12  sourav     kulapara                                                         
+20  arpan      rampur                                                           
+13  arup       haldia                                                           
+34  nilanjan   tamluk                                                           
+06  arun       haldia                                                           
+
+SQL> select * from project;
+
+no rows selected
+
+SQL> insert into project values('p_1','java');
+
+1 row created.
+
+SQL> insert into project values('p_2','sap');
+
+1 row created.
+
+SQL> insert into project values('p_3','c++');
+
+1 row created.
+
+SQL> insert into project values('p_4','design');
+
+1 row created.
+
+SQL> insert into project values('p_5','php');
+
+1 row created.
+
+SQL> insert into work values('12','p_2');
+
+1 row created.
+
+SQL> insert into work values('20','p_1');
+
+1 row created.
+
+SQL> insert into work values('13','p_2');
+
+1 row created.
+
+SQL> insert into work values('34','p_4');
+
+1 row created.
+
+SQL> insert into work values('06','p_2');
+
+1 row created.
+
+SQL> insert into EMPS values('11','suvankar','rampur');
+
+1 row created.
+
+SQL> insert into EMPS values('40','subrata','haldia');
+
+1 row created.
+
+SQL> select * from EMPS;
+
+E_N E_NAME     E_ADDRESS                                                        
+--- ---------- ----------                                                       
+12  sourav     kulapara                                                         
+20  arpan      rampur                                                           
+13  arup       haldia                                                           
+34  nilanjan   tamluk                                                           
+06  arun       haldia                                                           
+11  suvankar   rampur                                                           
+40  subrata    haldia                                                           
+
+7 rows selected.
+
+SQL> select * from project;
+
+P_N P_NAME                                                                      
+--- ----------                                                                  
+p_1 java                                                                        
+p_2 sap                                                                         
+p_3 c++                                                                         
+p_4 design                                                                      
+p_5 php                                                                         
+
+SQL> select * from work;
+
+E_N P_N                                                                         
+--- ---                                                                         
+12  p_2                                                                         
+20  p_1                                                                         
+13  p_2                                                                         
+34  p_4                                                                         
+06  p_2                                                                         
+
+SQL> select e_name from EMPS e,project p,work w where e.e_no=w.e_no and p.p_no=w.p_no and p_name='sap';
+
+E_NAME                                                                          
+----------                                                                      
+sourav                                                                          
+arup                                                                            
+arun                                                                            
+
+SQL> select distinct e_name  from EMPS,work where EMPS.e_no in(select distinct e_no from EMPS minus select distinct e_no from work);
+
+E_NAME                                                                          
+----------                                                                      
+suvankar                                                                        
+subrata                                                                         
+
+SQL> select e_name from EMPS where e_name like 'a%';
+
+E_NAME                                                                          
+----------                                                                      
+arpan                                                                           
+arup                                                                            
+arun                                                                            
+
+SQL> spool off

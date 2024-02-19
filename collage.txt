@@ -1,0 +1,107 @@
+SQL> select * from hotel:
+  2  ;
+select * from hotel:
+                   *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from hotel;
+
+H_ID H_NAME     ADDRESS       CONTACT                                           
+---- ---------- ---------- ----------                                           
+k02  Sunflower  Kolkata    8638254852                                           
+m12  Taj        Mumbai     7578927951                                           
+m13  Panjabisun Mumbai     9234164473                                           
+g40  Gongotri   Midnapur   6246381537                                           
+m02  Surachi    Mumbai     8624645153                                           
+
+SQL> select * from room;
+
+R_NO H_ID   BED_TYPE      PRICE                                                 
+---- ---- ---------- ----------                                                 
+2    k02           3        800                                                 
+12   m12           1        400                                                 
+04   m12           3       1200                                                 
+7    m12           3       1000                                                 
+02   m13           2        600                                                 
+15   g40           3      11000                                                 
+9    m02           1        300                                                 
+
+7 rows selected.
+
+SQL> select * from booking;
+
+H_ID       G_NO DATE_FROM DATE_TO                                               
+---- ---------- --------- ---------                                             
+k02           3 12-JUN-18 03-FEB-19                                             
+m12          10 03-JAN-18 11-MAR-18                                             
+m13           4 23-AUG-17 16-APR-18                                             
+g40          12 14-JUN-18 24-SEP-18                                             
+m02           3 20-FEB-17 04-JAN-18                                             
+
+SQL> select * from guest;
+
+no rows selected
+
+SQL> G_N BOOKING_NA G_ADDRESS
+SP2-0734: unknown command beginning "G_N BOOKIN..." - rest of line ignored.
+SQL> --- ---------- ----------
+SQL>   3 Ayan Mal   Ghatal
+SQL>  10 Ratan Sing Gujrat
+SQL>   4 Sam Shina  Goa
+SQL>  12 Utpal pal  Midnapur
+SQL>   3 Suman Sahu Karnatak
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> select r_no from room where price<1000 and bed_type=3 ordere by price asc;
+select r_no from room where price<1000 and bed_type=3 ordere by price asc
+                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select price,r_no from room  order by price where price>1000 and bed_type=3;
+select price,r_no from room  order by price where price>1000 and bed_type=3
+                                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select price,r_no from room  order by price and price>1000 and bed_type=3;
+select price,r_no from room  order by price and price>1000 and bed_type=3
+                                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select price,r_no from room  order by price;
+
+     PRICE R_NO                                                                 
+---------- ----                                                                 
+       300 9                                                                    
+       400 12                                                                   
+       600 02                                                                   
+       800 2                                                                    
+      1000 7                                                                    
+      1200 04                                                                   
+     11000 15                                                                   
+
+7 rows selected.
+
+SQL> select price,r_no from room  order by price where bed_type=3;
+select price,r_no from room  order by price where bed_type=3
+                                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> spool off

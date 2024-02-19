@@ -1,0 +1,295 @@
+SQL> create table hotel(h_id varchar(4),h_name char(10),address char(10),contact number(10));
+
+Table created.
+
+SQL> insert into hotel values(&h_id,&h_name,&address,&contact);
+Enter value for h_id: 'k02'
+Enter value for h_name: 'Sunflower'
+Enter value for address: 'Kolkata'
+Enter value for contact: '8638254852'
+old   1: insert into hotel values(&h_id,&h_name,&address,&contact)
+new   1: insert into hotel values('k02','Sunflower','Kolkata','8638254852')
+
+1 row created.
+
+SQL> insert into hotel values(&h_id,&h_name,&address,&contact);
+Enter value for h_id: 'm12'
+Enter value for h_name: 'Taj'
+Enter value for address: 'Mumbai'
+Enter value for contact: '7578927951'
+old   1: insert into hotel values(&h_id,&h_name,&address,&contact)
+new   1: insert into hotel values('m12','Taj','Mumbai','7578927951')
+
+1 row created.
+
+SQL> insert into hotel values(&h_id,&h_name,&address,&contact);
+Enter value for h_id: 'm13'
+Enter value for h_name: 'Panjabisun'
+Enter value for address: 'Mumbai'
+Enter value for contact: '9234164473'
+old   1: insert into hotel values(&h_id,&h_name,&address,&contact)
+new   1: insert into hotel values('m13','Panjabisun','Mumbai','9234164473')
+
+1 row created.
+
+SQL> insert into hotel values(&h_id,&h_name,&address,&contact);
+Enter value for h_id: 'g40'
+Enter value for h_name: 'Gongotri'
+Enter value for address: 'Midnapur'
+Enter value for contact: '6246381537'
+old   1: insert into hotel values(&h_id,&h_name,&address,&contact)
+new   1: insert into hotel values('g40','Gongotri','Midnapur','6246381537')
+
+1 row created.
+
+SQL> insert into hotel values(&h_id,&h_name,&address,&contact);
+Enter value for h_id: 'm02'
+Enter value for h_name: 'Surachi'
+Enter value for address: 'Mumbai'
+Enter value for contact: '8624645153'
+old   1: insert into hotel values(&h_id,&h_name,&address,&contact)
+new   1: insert into hotel values('m02','Surachi','Mumbai','8624645153')
+
+1 row created.
+
+SQL> create table room(r_no varchar(4),h_id varchar(4),bed_type number(1),price number(5));
+
+Table created.
+
+SQL> insert into room values(&r_no,&h_id,&bed_type,&price);
+Enter value for r_no: '2'
+Enter value for h_id: 'k02'
+Enter value for bed_type: '3'
+Enter value for price: '800'
+old   1: insert into room values(&r_no,&h_id,&bed_type,&price)
+new   1: insert into room values('2','k02','3','800')
+
+1 row created.
+
+SQL> insert into room values(&r_no,&h_id,&bed_type,&price);
+Enter value for r_no: '12'
+Enter value for h_id: 'm12'
+Enter value for bed_type: '1'
+Enter value for price: '400'
+old   1: insert into room values(&r_no,&h_id,&bed_type,&price)
+new   1: insert into room values('12','m12','1','400')
+
+1 row created.
+
+SQL> insert into room values(&r_no,&h_id,&bed_type,&price);
+Enter value for r_no: '04'
+Enter value for h_id: 'm12'
+Enter value for bed_type: '3'
+Enter value for price: '1200'
+old   1: insert into room values(&r_no,&h_id,&bed_type,&price)
+new   1: insert into room values('04','m12','3','1200')
+
+1 row created.
+
+SQL> insert into room values(&r_no,&h_id,&bed_type,&price);
+Enter value for r_no: '7'
+Enter value for h_id: 'm12'
+Enter value for bed_type: '3'
+Enter value for price: '1000'
+old   1: insert into room values(&r_no,&h_id,&bed_type,&price)
+new   1: insert into room values('7','m12','3','1000')
+
+1 row created.
+
+SQL> insert into room values(&r_no,&h_id,&bed_type,&price);
+Enter value for r_no: '02'
+Enter value for h_id: 'm13'
+Enter value for bed_type: '2'
+Enter value for price: '600'
+old   1: insert into room values(&r_no,&h_id,&bed_type,&price)
+new   1: insert into room values('02','m13','2','600')
+
+1 row created.
+
+SQL> insert into room values(&r_no,&h_id,&bed_type,&price);
+Enter value for r_no: '15'
+Enter value for h_id: 'g40'
+Enter value for bed_type: '3'
+Enter value for price: '11000'
+old   1: insert into room values(&r_no,&h_id,&bed_type,&price)
+new   1: insert into room values('15','g40','3','11000')
+
+1 row created.
+
+SQL> insert into room values(&r_no,&h_id,&bed_type,&price);
+Enter value for r_no: '9'
+Enter value for h_id: 'm02'
+Enter value for bed_type: '1'
+Enter value for price: '300'
+old   1: insert into room values(&r_no,&h_id,&bed_type,&price)
+new   1: insert into room values('9','m02','1','300')
+
+1 row created.
+
+SQL> create table booking(h_id varchar(4),g_no number(2),date_from date,date_to date);
+
+Table created.
+
+SQL> insert into booking values(&h_id,&g_no,&date_from,&date_to);
+Enter value for h_id: 'k02'
+Enter value for g_no: '3'
+Enter value for date_from: '12-jun-2018'
+Enter value for date_to: '03-feb-2019'
+old   1: insert into booking values(&h_id,&g_no,&date_from,&date_to)
+new   1: insert into booking values('k02','3','12-jun-2018','03-feb-2019')
+
+1 row created.
+
+SQL> insert into booking values(&h_id,&g_no,&date_from,&date_to);
+Enter value for h_id: 'm12'
+Enter value for g_no: '10'
+Enter value for date_from: '03-jan-2018'
+Enter value for date_to: '11-mar-2018'
+old   1: insert into booking values(&h_id,&g_no,&date_from,&date_to)
+new   1: insert into booking values('m12','10','03-jan-2018','11-mar-2018')
+
+1 row created.
+
+SQL> insert into booking values(&h_id,&g_no,&date_from,&date_to);
+Enter value for h_id: 'm13'
+Enter value for g_no: '4'
+Enter value for date_from: '23-aug-2017'
+Enter value for date_to: '16-apr-2018'
+old   1: insert into booking values(&h_id,&g_no,&date_from,&date_to)
+new   1: insert into booking values('m13','4','23-aug-2017','16-apr-2018')
+
+1 row created.
+
+SQL> insert into booking values(&h_id,&g_no,&date_from,&date_to);
+Enter value for h_id: 'g40'
+Enter value for g_no: '12'
+Enter value for date_from: '14-jun-2018'
+Enter value for date_to: '24-sep-2018'
+old   1: insert into booking values(&h_id,&g_no,&date_from,&date_to)
+new   1: insert into booking values('g40','12','14-jun-2018','24-sep-2018')
+
+1 row created.
+
+SQL> insert into booking values(&h_id,&g_no,&date_from,&date_to);
+Enter value for h_id: 'm02'
+Enter value for g_no: '3'
+Enter value for date_from: '20-feb-2017'
+Enter value for date_to: '04-jan-2018'
+old   1: insert into booking values(&h_id,&g_no,&date_from,&date_to)
+new   1: insert into booking values('m02','3','20-feb-2017','04-jan-2018')
+
+1 row created.
+
+SQL> create table guest(g_no number(2),booking_name char(10),g_address char(10));
+
+Table created.
+
+SQL> insert into guest values(&g_no,&booking_name,&g_address);
+Enter value for g_no: '3'
+Enter value for booking_name: 'Ayan Mal'
+Enter value for g_address: 'Ghatal'
+old   1: insert into guest values(&g_no,&booking_name,&g_address)
+new   1: insert into guest values('3','Ayan Mal','Ghatal')
+
+1 row created.
+
+SQL> insert into guest values(&g_no,&booking_name,&g_address);
+Enter value for g_no: '10'
+Enter value for booking_name: 'Ratan Sing'
+Enter value for g_address: 'Gujrat'
+old   1: insert into guest values(&g_no,&booking_name,&g_address)
+new   1: insert into guest values('10','Ratan Sing','Gujrat')
+
+1 row created.
+
+SQL> insert into guest values(&g_no,&booking_name,&g_address);
+Enter value for g_no: '4'
+Enter value for booking_name: 'Sam Shina'
+Enter value for g_address: 'Goa'
+old   1: insert into guest values(&g_no,&booking_name,&g_address)
+new   1: insert into guest values('4','Sam Shina','Goa')
+
+1 row created.
+
+SQL> insert into guest values(&g_no,&booking_name,&g_address);
+Enter value for g_no: '12'
+Enter value for booking_name: 'Utpal pal'
+Enter value for g_address: 'Midnapur'
+old   1: insert into guest values(&g_no,&booking_name,&g_address)
+new   1: insert into guest values('12','Utpal pal','Midnapur')
+
+1 row created.
+
+SQL> insert into guest values(&g_no,&booking_name,&g_address);
+Enter value for g_no: '3'
+Enter value for booking_name: 'Suman Sahu'
+Enter value for g_address: 'Karnatak'
+old   1: insert into guest values(&g_no,&booking_name,&g_address)
+new   1: insert into guest values('3','Suman Sahu','Karnatak')
+
+1 row created.
+
+SQL> select * from hotel;
+
+H_ID H_NAME     ADDRESS       CONTACT
+---- ---------- ---------- ----------
+k02  Sunflower  Kolkata    8638254852
+m12  Taj        Mumbai     7578927951
+m13  Panjabisun Mumbai     9234164473
+g40  Gongotri   Midnapur   6246381537
+m02  Surachi    Mumbai     8624645153
+
+SQL> select * from room;
+
+R_NO H_ID   BED_TYPE      PRICE
+---- ---- ---------- ----------
+2    k02           3        800
+12   m12           1        400
+04   m12           3       1200
+7    m12           3       1000
+02   m13           2        600
+15   g40           3      11000
+9    m02           1        300
+
+7 rows selected.
+
+SQL> select * from booking;
+
+H_ID       G_NO DATE_FROM DATE_TO
+---- ---------- --------- ---------
+k02           3 12-JUN-18 03-FEB-19
+m12          10 03-JAN-18 11-MAR-18
+m13           4 23-AUG-17 16-APR-18
+g40          12 14-JUN-18 24-SEP-18
+m02           3 20-FEB-17 04-JAN-18
+
+SQL> select * from guest;
+
+G_N BOOKING_NA G_ADDRESS
+--- ---------- ----------
+  3 Ayan Mal   Ghatal
+ 10 Ratan Sing Gujrat
+  4 Sam Shina  Goa
+ 12 Utpal pal  Midnapur
+  3 Suman Sahu Karnatak
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

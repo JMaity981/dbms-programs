@@ -1,0 +1,90 @@
+SQL> select * from employee;
+
+E_NAME     STREET     CITY                                                      
+---------- ---------- ----------                                                
+sourav     ln street  kolkata                                                   
+jayanta    gm street  mumbai                                                    
+nilanjan   bt road    ghatal                                                    
+subrata    gt road    haldia                                                    
+suvankar   vip road   tamluk                                                    
+pamela     pk street  hariyana                                                  
+
+6 rows selected.
+
+SQL> select * from works;
+
+E_NAME     C_NAME         SALARY                                                
+---------- ---------- ----------                                                
+sourav     ioc              7000                                                
+jayanta    ioc              6000                                                
+nilanjan   ioc             16000                                                
+subrata    cmc              4000                                                
+suvankar   cmc              2000                                                
+pamela     cmc             20000                                                
+
+6 rows selected.
+
+SQL> select * from company;
+
+C_NAME     CITY                                                                 
+---------- ----------                                                           
+ioc        haldia                                                               
+cmc        kolkata                                                              
+
+
+SQL> insert into manager values('sourav','nilanjan');
+
+1 row created.
+
+SQL> insert into manager values('jayanta','nilanjan');
+
+1 row created.
+
+SQL> insert into manager values('subrata','pamela');
+
+1 row created.
+
+SQL> insert into manager values('suvankar','pamela');
+
+1 row created.
+
+SQL> select * from manager;
+
+E_NAME     M_NAME                                                               
+---------- ----------                                                           
+sourav     nilanjan                                                             
+jayanta    nilanjan                                                             
+subrata    pamela                                                               
+suvankar   pamela                                                               
+
+SQL> select e.e_name,c.c_name,c.city from employee e,works w,company c where e.e_name=w.e_name and w.c_name=c.c_name and e.city=c.city;
+
+no rows selected
+
+SQL> alter table employee add ph_no number(12);
+
+Table altered.
+
+SQL> select * from employee;
+
+E_NAME     STREET     CITY            PH_NO                                     
+---------- ---------- ---------- ----------                                     
+sourav     ln street  kolkata                                                   
+jayanta    gm street  mumbai                                                    
+nilanjan   bt road    ghatal                                                    
+subrata    gt road    haldia                                                    
+suvankar   vip road   tamluk                                                    
+pamela     pk street  hariyana                                                  
+
+6 rows selected.
+
+SQL> select e_name from works where c_name='ioc';
+
+E_NAME                                                                          
+----------                                                                      
+sourav                                                                          
+jayanta                                                                         
+nilanjan                                                                        
+
+SQL>update works,manager set salary=salary*1.20 where
+SQL> spool off

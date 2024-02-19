@@ -1,0 +1,81 @@
+SQL> create table employee1(emp_id varchar (10), emp_name varchar (10), salary number (8), date_of_joining date);
+
+Table created.
+
+SQL> insert into employee1 values('1', 'sourav', '10000','10-jun-2017');
+
+1 row created.
+
+SQL> insert into employee1 values('2', 'souvik', '5000', '20-aug-2016');
+
+1 row created.
+
+SQL> insert into employee1 values('3', 'nilu', '20000', '1-aug-2018');
+
+1 row created.
+
+SQL> insert into employee1 values('4', 'amit', '18000', '3-fev-2012');
+insert into employee1 values('4', 'amit', '18000', '3-fev-2012')
+                                                   *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> insert into employee1 values('4', 'amit', '18000', '3-desc-2012');
+insert into employee1 values('4', 'amit', '18000', '3-desc-2012')
+                                                   *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> insert into employee1 values('4', 'amit', '18000', '3-jan-2012');
+
+1 row created.
+
+SQL> select * from employee1;
+
+EMP_ID     EMP_NAME       SALARY DATE_OF_J                                      
+---------- ---------- ---------- ---------                                      
+1          sourav          10000 10-JUN-17                                      
+2          souvik           5000 20-AUG-16                                      
+3          nilu            20000 01-AUG-18                                      
+4          amit            18000 03-JAN-12                                      
+
+SQL> insert into employee1 values('4', 'amit', '18000', '5-apr-2012');
+
+1 row created.
+
+SQL> select * from employee1;
+
+EMP_ID     EMP_NAME       SALARY DATE_OF_J                                      
+---------- ---------- ---------- ---------                                      
+1          sourav          10000 10-JUN-17                                      
+2          souvik           5000 20-AUG-16                                      
+3          nilu            20000 01-AUG-18                                      
+4          amit            18000 03-JAN-12                                      
+4          amit            18000 05-APR-12                                      
+
+SQL> select * from employee1 where date_of_joining=3-apr-2012;
+select * from employee1 where date_of_joining=3-apr-2012
+                                                *
+ERROR at line 1:
+ORA-00904: "APR": invalid identifier 
+
+
+SQL> select * from employee1 where date_of_joining='3-apr-2012';
+
+no rows selected
+
+SQL> select * from employee1 where date_of_joining='5-apr-2012';
+
+EMP_ID     EMP_NAME       SALARY DATE_OF_J                                      
+---------- ---------- ---------- ---------                                      
+4          amit            18000 05-APR-12                                      
+
+SQL> select emp_name from employee1 where salary=(select min(salary) from employee1);
+
+EMP_NAME                                                                        
+----------                                                                      
+souvik                                                                          
+
+SQL> spool off

@@ -1,0 +1,108 @@
+SQL> select * from emp3;
+
+      E_NO E_NAME       DEPT_NAME            JOB_STATUS          SALARY         
+---------- ------------ -------------------- --------------- ----------         
+     14236 TANUSHREE    COMPUTER SCIENCE     PROFESSOR            38000         
+     98234 PALASH       COMPUTER SCIENCE     LAB TECHNISION       12000         
+     74552 ASIT         MATH                 LAB TECHNISION       13000         
+     74563 MOHAN        CHEMISTRY            LAB TECHNISION       13500         
+     74563 SURENDRA     CHEMISTRY            PROFESSOR            45000         
+     14236 JAYANTA      COMPUTER SCIENCE     PROFESSOR            50000         
+
+6 rows selected.
+
+SQL> select count(*) from emp3 where dept_name='computer science';
+
+  COUNT(*)                                                                      
+----------                                                                      
+         0                                                                      
+
+SQL> select count(*) from emp3 where dept_name='COMPUTER SCIENCE;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> select count(*) from emp3 where dept_name='COMPUTER SCIENCE';
+
+  COUNT(*)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SELECT SUM(SALARY,JOB_STATUS) FROM EMP3 GROUP BY JOB_STATUS;
+SELECT SUM(SALARY,JOB_STATUS) FROM EMP3 GROUP BY JOB_STATUS
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT SUM(SALARY),JOB_STATUS FROM EMP3 GROUP BY JOB_STATUS;
+
+SUM(SALARY) JOB_STATUS                                                          
+----------- ---------------                                                     
+      38500 LAB TECHNISION                                                      
+     133000 PROFESSOR                                                           
+
+SQL> SELECT SUM(SALARY),DEPT_NAME FROM EMP3 GROUP BY DEPT_NAME;
+
+SUM(SALARY) DEPT_NAME                                                           
+----------- --------------------                                                
+     100000 COMPUTER SCIENCE                                                    
+      13000 MATH                                                                
+      58500 CHEMISTRY                                                           
+
+SQL> SELECT AVG(SALARY),JOB_STATUS FROM EMP3 GROUP BY JOB_STATUS;
+
+AVG(SALARY) JOB_STATUS                                                          
+----------- ---------------                                                     
+ 12833.3333 LAB TECHNISION                                                      
+ 44333.3333 PROFESSOR                                                           
+
+SQL> SELECT AVG(SALARY),JOB_STATUS,DEPT_NAME FROM EMP3 GROUP BY JOB_STATUS;
+SELECT AVG(SALARY),JOB_STATUS,DEPT_NAME FROM EMP3 GROUP BY JOB_STATUS
+                              *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT * FROM EMP3 GROUP BY DEPT_NAME;
+SELECT * FROM EMP3 GROUP BY DEPT_NAME
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT SALARY,DEPT_NAME FROM EMP3 GROUP BY DEPT_NAME;
+SELECT SALARY,DEPT_NAME FROM EMP3 GROUP BY DEPT_NAME
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> SELECT SUM(SALARY),DEPT_NAME FROM EMP3 GROUP BY DEPT_NAME AND GROUP BY JOB_STATUS;
+SELECT SUM(SALARY),DEPT_NAME FROM EMP3 GROUP BY DEPT_NAME AND GROUP BY JOB_STATUS
+                                                          *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT DEPT_NAME,JOB_STATUS FROM (SELECT SUM(SALARY),DEPT_NAME FROM EMP3 GROUP BY DEPT_NAME ) GROUP BY JOB_STATUS;
+SELECT DEPT_NAME,JOB_STATUS FROM (SELECT SUM(SALARY),DEPT_NAME FROM EMP3 GROUP BY DEPT_NAME ) GROUP BY JOB_STATUS
+                                                                                                       *
+ERROR at line 1:
+ORA-00904: "JOB_STATUS": invalid identifier 
+
+
+SQL> SELECT DEPT_NAME,JOB_STATUS FROM (SELECT SUM(SALARY),DEPT_NAME,JOB_STATUS FROM EMP3 GROUP BY DEPT_NAME ) GROUP BY JOB_STATUS;
+SELECT DEPT_NAME,JOB_STATUS FROM (SELECT SUM(SALARY),DEPT_NAME,JOB_STATUS FROM EMP3 GROUP BY DEPT_NAME ) GROUP BY JOB_STATUS
+                                                               *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> select count(*) from emp3 where JOB_STATUS='PROFESSOR';
+
+  COUNT(*)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SPOOL OFF;

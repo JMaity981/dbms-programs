@@ -1,0 +1,106 @@
+SQL> create table emp1(e_no varchar(4),e_name char(10),e_address char(10));
+
+Table created.
+
+SQL> insert into emp1 values('01','nilanjan','rampur');
+
+1 row created.
+
+SQL> insert into emp1 values('02','anjan','geokhali');
+
+1 row created.
+
+SQL> insert into emp1 values('03','jayanta','tamluk');
+
+1 row created.
+
+SQL> insert into emp1 values('04','subrata','haldia');
+
+1 row created.
+
+SQL> insert into emp1 values('05','suvankar','ghatal');
+
+1 row created.
+
+SQL> create table project(p_no varchar(4),p_name char(10));
+
+Table created.
+
+SQL> insert into project values('p_1','web_des');
+
+1 row created.
+
+SQL> insert into project values('p_2','sap');
+
+1 row created.
+
+SQL> insert into project values('p_3','softwere');
+
+1 row created.
+
+SQL> create table work(e_no varchar(4),p_no varchar(4));
+
+Table created.
+
+SQL> insert into work values('01','p_1');
+
+1 row created.
+
+SQL> insert into work values('02','p_2');
+
+1 row created.
+
+SQL> insert into work values('03','p_1');
+
+1 row created.
+
+SQL> insert into work values('04','p_3');
+
+1 row created.
+
+SQL> select * from emp1;
+
+E_NO E_NAME     E_ADDRESS                                                       
+---- ---------- ----------                                                      
+01   nilanjan   rampur                                                          
+02   anjan      geokhali                                                        
+03   jayanta    tamluk                                                          
+04   subrata    haldia                                                          
+05   suvankar   ghatal                                                          
+
+SQL> select * from project;
+
+P_NO P_NAME                                                                     
+---- ----------                                                                 
+p_1  web_des                                                                    
+p_2  sap                                                                        
+p_3  softwere                                                                   
+
+SQL> select * from work;
+
+E_NO P_NO                                                                       
+---- ----                                                                       
+01   p_1                                                                        
+02   p_2                                                                        
+03   p_1                                                                        
+04   p_3                                                                        
+
+SQL> select e_name from emp1 e,project p,work w where e.e_no=w.e_no and p.p_no=w.p_no and p_name='sap';
+
+E_NAME                                                                          
+----------                                                                      
+anjan                                                                           
+
+SQL> select distinct e_name  from emp1 e,work w where e.e_no in(select distinct e_no from emp1 minus select distinct e_no from work);
+
+E_NAME                                                                          
+----------                                                                      
+suvankar                                                                        
+
+SQL> select e_name from emp1 where e_name like 'a%';
+
+E_NAME                                                                          
+----------                                                                      
+anjan                                                                           
+
+SQL> spool off

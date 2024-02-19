@@ -1,0 +1,55 @@
+SQL> create table teacher(t_id varchar(4),t_name char(10),b_sal number(5));
+
+Table created.
+
+SQL> insert into teacher values('t200','nilanjan','35000');
+
+1 row created.
+
+SQL> insert into teacher values('t201','subrata','5000');
+
+1 row created.
+
+SQL> insert into teacher values('t202','jayanta','25000');
+
+1 row created.
+
+SQL> insert into teacher values('t203','subhankar','27000');
+
+1 row created.
+
+SQL> select * from teacher;
+
+T_ID T_NAME          B_SAL                                                      
+---- ---------- ----------                                                      
+t200 nilanjan        35000                                                      
+t201 subrata          5000                                                      
+t202 jayanta         25000                                                      
+t203 subhankar       27000                                                      
+
+SQL> update teacher set b_sal=(b_sal*1.3);
+
+4 rows updated.
+
+SQL> select * from teacher;
+
+T_ID T_NAME          B_SAL                                                      
+---- ---------- ----------                                                      
+t200 nilanjan        45500                                                      
+t201 subrata          6500                                                      
+t202 jayanta         32500                                                      
+t203 subhankar       35100                                                      
+
+SQL> delete from teacher where t_id='t201';
+
+1 row deleted.
+
+SQL> select * from teacher;
+
+T_ID T_NAME          B_SAL                                                      
+---- ---------- ----------                                                      
+t200 nilanjan        45500                                                      
+t202 jayanta         32500                                                      
+t203 subhankar       35100                                                      
+
+SQL> spool off

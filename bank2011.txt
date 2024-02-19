@@ -1,0 +1,73 @@
+SQL> create table bank(loan_number number(5),branch_name char(10),amount number(8));
+
+Table created.
+
+SQL> insert into bank values('245','mechada','4000');
+
+1 row created.
+
+SQL> insert into bank values('240','mechada','3000');
+
+1 row created.
+
+SQL> insert into bank values('241','mechada','3800');
+
+1 row created.
+
+SQL> insert into bank values('300','kolaghat','2500');
+
+1 row created.
+
+SQL> insert into bank values('400','ghatal','6000');
+
+1 row created.
+
+SQL> select * from bank;
+
+LOAN_NUMBER BRANCH_NAM     AMOUNT                                               
+----------- ---------- ----------                                               
+        245 mechada          4000                                               
+        240 mechada          3000                                               
+        241 mechada          3800                                               
+        300 kolaghat         2500                                               
+        400 ghatal           6000                                               
+
+SQL> insert into bank values('242','mechada','800');
+
+1 row created.
+
+SQL> select * from bank;
+
+LOAN_NUMBER BRANCH_NAM     AMOUNT                                               
+----------- ---------- ----------                                               
+        245 mechada          4000                                               
+        240 mechada          3000                                               
+        241 mechada          3800                                               
+        300 kolaghat         2500                                               
+        400 ghatal           6000                                               
+        242 mechada           800                                               
+
+6 rows selected.
+
+SQL> select loan_number from bank where branch_name='mechada' and amount>1200;
+
+LOAN_NUMBER                                                                     
+-----------                                                                     
+        245                                                                     
+        240                                                                     
+        241                                                                     
+
+SQL> select * from bank order by amount;
+
+LOAN_NUMBER BRANCH_NAM     AMOUNT                                               
+----------- ---------- ----------                                               
+        242 mechada           800                                               
+        300 kolaghat         2500                                               
+        240 mechada          3000                                               
+        241 mechada          3800                                               
+        245 mechada          4000                                               
+        400 ghatal           6000                                               
+
+6 rows selected.
+
+SQL> spool off

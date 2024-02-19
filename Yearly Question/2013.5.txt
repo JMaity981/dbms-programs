@@ -1,0 +1,120 @@
+SQL> create table student1(s_id varchar (8), programme varchar (10), d_id varchar (8), year number (6));
+
+Table created.
+
+SQL> insert into student1 values('1', 'honours', '5', '2009');
+
+1 row created.
+
+SQL> insert into student1('2', 'diploma', '5', '2010');
+insert into student1('2', 'diploma', '5', '2010')
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> insert into student1 values('2', 'diploma', '5', '2010');
+
+1 row created.
+
+SQL> insert into student1 values('3','samister', '5', '2009');
+
+1 row created.
+
+SQL> insert into student1 values('4', 'btech','4', '1011');
+
+1 row created.
+
+SQL> select * from student1;
+
+S_ID     PROGRAMME  D_ID           YEAR                                         
+-------- ---------- -------- ----------                                         
+1        honours    5              2009                                         
+2        diploma    5              2010                                         
+3        samister   5              2009                                         
+4        btech      4              1011                                         
+
+SQL> create table teacher1(d_id varchar (6), s_id varchar (6), course_id varchar (7), t_id varchar (7));
+
+Table created.
+
+SQL> insert into teacher1 values('5', '1', '1', '111');
+
+1 row created.
+
+SQL> insert into teachar1 values('5', '2', '2', '112');
+insert into teachar1 values('5', '2', '2', '112')
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> insert into teacher1 values('5', '2', '2', '112');
+
+1 row created.
+
+SQL> insert into teacher values('5', '3', '3', '113');
+insert into teacher values('5', '3', '3', '113')
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> insert into teacher values('4', '7', '3', '113');
+insert into teacher values('4', '7', '3', '113')
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> insert into teacher1 values('4', '7', '3', '113');
+
+1 row created.
+
+SQL> select * from teacher1;
+
+D_ID   S_ID   COURSE_ T_ID                                                      
+------ ------ ------- -------                                                   
+5      1      1       111                                                       
+5      2      2       112                                                       
+4      7      3       113                                                       
+
+SQL> create table grade1(s_id varchar (8), course_id varchar (10), grade varchar (10), year varchar (5));
+
+Table created.
+
+SQL> insert into grade1 values('1', '1', 'first', '2009');
+
+1 row created.
+
+SQL> insert into grade1 values('2', '2', 'second', '2010');
+
+1 row created.
+
+SQL> insert into grade1 values('7','7', 'third', '2009');
+
+1 row created.
+
+SQL> select * from grade1;
+
+S_ID     COURSE_ID  GRADE      YEAR                                             
+-------- ---------- ---------- -----                                            
+1        1          first      2009                                             
+2        2          second     2010                                             
+7        7          third      2009                                             
+
+SQL> select t_id from student1 s, teacher1 t, grade1 g where s.s_id=t.s_id and s.d_id=t.d_id and t.s_id=g.s_id and d_id =5;
+select t_id from student1 s, teacher1 t, grade1 g where s.s_id=t.s_id and s.d_id=t.d_id and t.s_id=g.s_id and d_id =5
+                                                                                                              *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> select t_id from student1 s, teacher1 t, grade1 g where s.s_id=t.s_id and s.d_id=t.d_id and t.s_id=g.s_id and d_id=5;
+select t_id from student1 s, teacher1 t, grade1 g where s.s_id=t.s_id and s.d_id=t.d_id and t.s_id=g.s_id and d_id=5
+                                                                                                              *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> spool off

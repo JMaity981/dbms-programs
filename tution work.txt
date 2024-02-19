@@ -1,0 +1,15 @@
+* write a java program to implement destractor in java.
+* write a java program to find the sum of a GP for a given number of terms.
+* write a java program to impemetn friend function.
+* write a java program to impemetn hybrid inheritance.
+* DtoOctal
+* operator overloading
+* prime factor
+* print first 50 nonfebinacci prime number.
+* what is console application program.
+***write a java program to extract a portion of a character string and print the extracted string.
+* what is field overloading? with a example.....
+* write a java program to read a numer and print it's roman numerals and vice varsa.
+*** write a java progaram to design an interface for stack ADT and implements stack ADT using Array.
+*** write a java progaram to check wheather a string is subset of another string or not.
+* Hextodec

@@ -1,0 +1,79 @@
+SQL> create table teacher2(tid varchar (10), tname varchar (10), basic number (8,2), salary number (8,3));
+
+Table created.
+
+SQL> insert into teacher2 values('111', 'avi', '10000', '14000');
+
+1 row created.
+
+SQL> insert into teacher2 values('112', 'nilu', '11000.50', '13000.75');
+
+1 row created.
+
+SQL> insert into teacher2 values('113', 'nilanjon', '16000.50', '33000.75');
+
+1 row created.
+
+SQL> insert into teacher2 values('114', 'nilanjona', '17000.50', '3000.75');
+
+1 row created.
+
+SQL> insert into teacher2 values('115', 'sourav', '7000.50', '10000.75');
+
+1 row created.
+
+SQL> select * from teacher2;
+
+TID        TNAME           BASIC     SALARY                                     
+---------- ---------- ---------- ----------                                     
+111        avi             10000      14000                                     
+112        nilu          11000.5   13000.75                                     
+113        nilanjon      16000.5   33000.75                                     
+114        nilanjona     17000.5    3000.75                                     
+115        sourav         7000.5   10000.75                                     
+
+SQL> update teacher set salary=salary+basic*.35;
+update teacher set salary=salary+basic*.35
+                                 *
+ERROR at line 1:
+ORA-00904: "BASIC": invalid identifier 
+
+
+SQL> update teacher2 set salary=salary+basic*.35;
+
+5 rows updated.
+
+SQL> select * from teacher2;
+
+TID        TNAME           BASIC     SALARY                                     
+---------- ---------- ---------- ----------                                     
+111        avi             10000      17500                                     
+112        nilu          11000.5  16850.925                                     
+113        nilanjon      16000.5  38600.925                                     
+114        nilanjona     17000.5   8950.925                                     
+115        sourav         7000.5  12450.925                                     
+
+SQL> desc teacher2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TID                                                VARCHAR2(10)
+ TNAME                                              VARCHAR2(10)
+ BASIC                                              NUMBER(8,2)
+ SALARY                                             NUMBER(8,3)
+
+SQL> select tname from teacher2 where basic>14000
+  2  select tname from teacher2 where basic>14000;
+select tname from teacher2 where basic>14000
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select tname from teacher2 where basic>14000;
+
+TNAME                                                                           
+----------                                                                      
+nilanjon                                                                        
+nilanjona                                                                       
+
+SQL> spool off

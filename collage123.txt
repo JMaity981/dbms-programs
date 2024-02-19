@@ -1,0 +1,235 @@
+SQL> select c_id,a_id,p_id from customer c,agent a,product p where c.city=a.city and a.city=p.city;
+
+C_ID A_ID P_ID                                                                  
+---- ---- ----                                                                  
+coo3 aoo1 p001                                                                  
+coo1 aoo2 p002                                                                  
+coo2 aoo3 p003                                                                  
+coo4 aoo4 p004                                                                  
+
+SQL> select c_id,a_id,p_id,c.city from customer c,agent a,product p where c.city=a.city and a.city=p.city;
+
+C_ID A_ID P_ID CITY                                                             
+---- ---- ---- ----------                                                       
+coo3 aoo1 p001 Mahishadal                                                       
+coo1 aoo2 p002 Kolkata                                                          
+coo2 aoo3 p003 Tamluk                                                           
+coo4 aoo4 p004 Ghatal                                                           
+
+SQL> select a_name from agent a,order o where a.a_id=o.o_id and c_id=c003;
+select a_name from agent a,order o where a.a_id=o.o_id and c_id=c003
+                           *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> select a_name from agent a,orders o where a.a_id=o.o_id and c_id=c003;
+select a_name from agent a,orders o where a.a_id=o.o_id and c_id=c003
+                                                                 *
+ERROR at line 1:
+ORA-00904: "C003": invalid identifier 
+
+
+SQL> select a_name from agent a,orders o where a.a_id=o.o_id and c_id='c003';
+select a_name from agent a,orders o where a.a_id=o.o_id and c_id='c003'
+                                                 *
+ERROR at line 1:
+ORA-00904: "O"."O_ID": invalid identifier 
+
+
+SQL> select a_name from agent a,orders o where a.a_id=o.a_id and c_id='c003';
+
+no rows selected
+
+SQL> select a_name from agent a,orders o,customer c where a.a_id=o.a_id and o.c_ic=c.c_id and c_id='c003';
+select a_name from agent a,orders o,customer c where a.a_id=o.a_id and o.c_ic=c.c_id and c_id='c003'
+                                                                                         *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> select a_name from agent a,orders o,customer c where a.a_id=o.a_id and o.c_ic=c.c_id and c.c_id='c003';
+select a_name from agent a,orders o,customer c where a.a_id=o.a_id and o.c_ic=c.c_id and c.c_id='c003'
+                                                                       *
+ERROR at line 1:
+ORA-00904: "O"."C_IC": invalid identifier 
+
+
+SQL> select a_name from agent a,orders o,customer c where a.a_id=o.a_id and o.c_id=c.c_id and c.c_id='c003';
+
+no rows selected
+
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> drop table agent;
+
+Table dropped.
+
+SQL> drop table product;
+
+Table dropped.
+
+SQL> drop table orders;
+
+Table dropped.
+
+SQL> > create table customer(c_id varchar(4),c_name char(10),city char(10),discount number(5));
+SP2-0734: unknown command beginning "> create t..." - rest of line ignored.
+SQL> create table customer(c_id varchar(4),c_name char(10),city char(10),discount number(5));
+
+Table created.
+
+SQL> insert into customer values('c002','Ram Maity','Tamluk');
+insert into customer values('c002','Ram Maity','Tamluk')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> create table customer(c_id varchar(4),c_name char(10),city char(10));
+
+Table created.
+
+SQL> insert into customer values('coo2','Ram Maity','Tamluk');
+
+1 row created.
+
+SQL> insert into customer values('coo3','Sam Kar','Mahishadal');
+
+1 row created.
+
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> create table customer(c_id varchar(4),c_name char(10),city char(10));
+
+Table created.
+
+SQL> insert into customer values('c002','Ram Maity','Tamluk');
+
+1 row created.
+
+SQL> insert into customer values('c003','Sam Kar','Mahishadal');
+
+1 row created.
+
+SQL> insert into customer values('c004','Pradip Das','Ghatal');
+
+1 row created.
+
+SQL> create table agent(a_id varchar(4),a_name char(10),city char(10));
+
+Table created.
+
+SQL> insert into agent values('a001','Pritam Pal','Mahishadal');
+
+1 row created.
+
+SQL> insert into agent values('a002','Anup Roy','Kolkata');
+
+1 row created.
+
+SQL> insert into agent values('a003','Pulak Jana','Tamluk');
+
+1 row created.
+
+SQL> insert into agent values('a004','Som Das','Ghatal');
+
+1 row created.
+
+SQL> create table product(p_id varchar(4),p_name char(10),city char(10),quqntity number(5),price number(7));
+
+Table created.
+
+SQL> insert into product values('p001','Biscuit','Mahishadal','40','2000');
+
+1 row created.
+
+SQL> insert into product values('p002','cacke','Kolkata','15','3000');
+
+1 row created.
+
+SQL> insert into product values('p003','chips','Tamluk','30','2500');
+
+1 row created.
+
+SQL> insert into product values('p004','tea','Ghatal','23','4500');
+
+1 row created.
+
+SQL> create table orders(o_no varchar(4),month char(10),c_id varchar(4),p_id varchar(4),a_id varchar(4),quantity number(5),price number(7));
+
+Table created.
+
+SQL>  insert into orders values('o001','March','c001','p001','a001','40','2000');
+
+1 row created.
+
+SQL> insert into orders values('o002','April','c002','p002','a002','15','3000');
+
+1 row created.
+
+SQL>  insert into orders values('o003','May','c003','p003','a003','30','2500');
+
+1 row created.
+
+SQL> insert into orders values('o004','June','c004','p004','a004','23','4500');
+
+1 row created.
+
+SQL> select * from customer;
+
+C_ID C_NAME     CITY                                                            
+---- ---------- ----------                                                      
+c002 Ram Maity  Tamluk                                                          
+c003 Sam Kar    Mahishadal                                                      
+c004 Pradip Das Ghatal                                                          
+
+SQL> insert into customer values('c001','Suman Pal','Kolkata');
+
+1 row created.
+
+SQL> select * from customer;
+
+C_ID C_NAME     CITY                                                            
+---- ---------- ----------                                                      
+c002 Ram Maity  Tamluk                                                          
+c003 Sam Kar    Mahishadal                                                      
+c004 Pradip Das Ghatal                                                          
+c001 Suman Pal  Kolkata                                                         
+
+SQL> select * from agent;
+
+A_ID A_NAME     CITY                                                            
+---- ---------- ----------                                                      
+a001 Pritam Pal Mahishadal                                                      
+a002 Anup Roy   Kolkata                                                         
+a003 Pulak Jana Tamluk                                                          
+a004 Som Das    Ghatal                                                          
+
+SQL> select * from product;
+
+P_ID P_NAME     CITY         QUQNTITY      PRICE                                
+---- ---------- ---------- ---------- ----------                                
+p001 Biscuit    Mahishadal         40       2000                                
+p002 cacke      Kolkata            15       3000                                
+p003 chips      Tamluk             30       2500                                
+p004 tea        Ghatal             23       4500                                
+
+SQL> select * from orders;
+
+O_NO MONTH      C_ID P_ID A_ID   QUANTITY      PRICE                            
+---- ---------- ---- ---- ---- ---------- ----------                            
+o001 March      c001 p001 a001         40       2000                            
+o002 April      c002 p002 a002         15       3000                            
+o003 May        c003 p003 a003         30       2500                            
+o004 June       c004 p004 a004         23       4500                            
+
+SQL> spool g:

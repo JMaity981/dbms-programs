@@ -1,0 +1,212 @@
+SQL> insert into customer values('coo2','Ram Maity','Tamluk');
+
+1 row created.
+
+SQL> insert into customer values('coo3','Sam Kar','Mahishadal');
+
+1 row created.
+
+SQL> insert into customer values('coo4','Pradip Das','Ghatal');
+
+1 row created.
+
+SQL> create table agent(a_id varchar(4),a_name char(10),city char(10));
+
+Table created.
+
+SQL> insert into agent values('aoo1','Pritam Pal','Mahishadal');
+
+1 row created.
+
+SQL> insert into agent values('aoo2','Anup Roy','Kolkata');
+
+1 row created.
+
+SQL> insert into agent values('aoo3','Pulak Jana','Tamluk');
+
+1 row created.
+
+SQL> insert into agent values('aoo4','Som Das','Ghatal');
+
+1 row created.
+
+SQL> create table product(p_id varchar(4),p_name char(10),city char(10),quqntity number(5),price number(7));
+
+Table created.
+
+SQL> insert into product values('p001','Biscuit','Mahishadal','40','2000');
+
+1 row created.
+
+SQL> insert into product values('p002','cacke','Kolkata','15','3000');
+
+1 row created.
+
+SQL> insert into product values('p003','chips','Tamluk','30','2500');
+
+1 row created.
+
+SQL> insert into product values('p004','tea','Ghatal','23','4500');
+
+1 row created.
+
+SQL> create table orders(o_no varchar(4),month char(10),c_id varchar(4),p_id varchar(4),quantity number(5),price number(7));
+
+Table created.
+
+SQL> insert into orders values('o001','March','c001','p001','a001','40','2000');
+insert into orders values('o001','March','c001','p001','a001','40','2000')
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> drop table orders;
+
+Table dropped.
+
+SQL> create table orders(o_no varchar(4),month char(10),c_id varchar(4),p_id varchar(4),a_id varchar(4),quantity number(5),price number(7));
+
+Table created.
+
+SQL> insert into orders values('o001','March','c001','p001','a001','40','2000');
+
+1 row created.
+
+SQL> insert into orders values('o002','April','c002','p002','a002','15','3000');
+
+1 row created.
+
+SQL> insert into orders values('o003','May','c003','p003','a003','30','2500');
+
+1 row created.
+
+SQL> insert into orders values('o004','','c003','p003','a003','30','2500');
+
+1 row created.
+
+SQL> insert into orders values('o004','','c004','p004','a004','23','4500');
+
+1 row created.
+
+SQL> select * from customer;
+
+C_ID C_NAME     CITY                                                            
+---- ---------- ----------                                                      
+coo1 Suman Pal  Kolkata                                                         
+coo2 Ram Maity  Tamluk                                                          
+coo3 Sam Kar    Mahishadal                                                      
+coo4 Pradip Das Ghatal                                                          
+
+SQL> select * from agent;
+
+A_ID A_NAME     CITY                                                            
+---- ---------- ----------                                                      
+aoo1 Pritam Pal Mahishadal                                                      
+aoo2 Anup Roy   Kolkata                                                         
+aoo3 Pulak Jana Tamluk                                                          
+aoo4 Som Das    Ghatal                                                          
+
+SQL> select * from product;
+
+P_ID P_NAME     CITY         QUQNTITY      PRICE                                
+---- ---------- ---------- ---------- ----------                                
+p001 Biscuit    Mahishadal         40       2000                                
+p002 cacke      Kolkata            15       3000                                
+p003 chips      Tamluk             30       2500                                
+p004 tea        Ghatal             23       4500                                
+
+SQL> select * from orders;
+
+O_NO MONTH      C_ID P_ID A_ID   QUANTITY      PRICE                            
+---- ---------- ---- ---- ---- ---------- ----------                            
+o001 March      c001 p001 a001         40       2000                            
+o002 April      c002 p002 a002         15       3000                            
+o003 May        c003 p003 a003         30       2500                            
+o004            c003 p003 a003         30       2500                            
+o004            c004 p004 a004         23       4500                            
+
+SQL> select p.city,c_name,a_name,p_name from customer c,agent a,product p where c.city=a.city and a.city=p.city and p.city='Mahishadal'
+  2  
+SQL> select p.city,c_name,a_name,p_name from customer c,agent a,product p where c.city=a.city and a.city=p.city and p.city='Mahishadal';
+
+CITY       C_NAME     A_NAME     P_NAME                                         
+---------- ---------- ---------- ----------                                     
+Mahishadal Sam Kar    Pritam Pal Biscuit                                        
+
+SQL> select a_name from orders o,agents a where a.a_id=o.o_id and o.c_id=''c003';
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> select a_name from orders o,agents a where a.a_id=o.o_id and o.c_id='c003';
+select a_name from orders o,agents a where a.a_id=o.o_id and o.c_id='c003'
+                            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select a_name from orders o,agent a where a.a_id=o.o_id and o.c_id='c003';
+select a_name from orders o,agent a where a.a_id=o.o_id and o.c_id='c003'
+                                                 *
+ERROR at line 1:
+ORA-00904: "O"."O_ID": invalid identifier 
+
+
+SQL> select a_name from orders o,agent a where a.a_id=o.a_id and o.c_id='c003';
+
+no rows selected
+
+SQL> drop table orders;
+
+Table dropped.
+
+SQL> create table orders(o_no varchar(4),month char(10),c_id varchar(4),p_id varchar(4),a_id varchar(4),quantity number(5),price number(7));
+
+Table created.
+
+SQL> insert into orders values('o001','March','c001','p001','a001','40','2000');
+
+1 row created.
+
+SQL> insert into orders values('o002','April','c002','p002','a002','15','3000');
+
+1 row created.
+
+SQL> insert into orders values('o003','May','c003','p003','a003','30','2500');
+
+1 row created.
+
+SQL> insert into orders values('o004','June','c004','p004','a004','23','4500');
+
+1 row created.
+
+SQL> select * from orders;
+
+O_NO MONTH      C_ID P_ID A_ID   QUANTITY      PRICE                            
+---- ---------- ---- ---- ---- ---------- ----------                            
+o001 March      c001 p001 a001         40       2000                            
+o002 April      c002 p002 a002         15       3000                            
+o003 May        c003 p003 a003         30       2500                            
+o004 June       c004 p004 a004         23       4500                            
+
+SQL> select p.city,c_name,a_name,p_name from customer c,agent a,product p where c.city=a.city and a.city=p.city and p.city='Mahishadal'
+  2  select a_name from orders o,agents a where a.a_id=o.o_id and o.c_id='c003';
+select a_name from orders o,agents a where a.a_id=o.o_id and o.c_id='c003'
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select a_name from orders o,agent a where a.a_id=o.a_id and o.c_id='c003';
+
+no rows selected
+
+SQL> select a_name,a_id from orders o,agent a where a.a_id=o.a_id and o.c_id='c003';
+select a_name,a_id from orders o,agent a where a.a_id=o.a_id and o.c_id='c003'
+              *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> spool off

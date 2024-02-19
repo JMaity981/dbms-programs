@@ -1,0 +1,106 @@
+SQL> create table course2(c_name varchar (10), date_of_commencement date, fees number (8));
+
+Table created.
+
+SQL> insert into course2 values('computerscience', '1-jun-2014');
+insert into course2 values('computerscience', '1-jun-2014')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> insert into course2 values('computerscience', '1-jun-2014', '60000');
+insert into course2 values('computerscience', '1-jun-2014', '60000')
+                           *
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."COURSE2"."C_NAME" (actual: 15, 
+maximum: 10) 
+
+
+SQL> insert into course2 values('computer', '1-jun-2014', '60000');
+
+1 row created.
+
+SQL> insert into course2 values('music', '1-aug-2013', '40000');
+
+1 row created.
+
+SQL> insert into course2 values('chemistry', '1-jun-2017');
+insert into course2 values('chemistry', '1-jun-2017')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> insert into course2 values('chemistry', '1-jun-2017', '50000');
+
+1 row created.
+
+SQL> select * from course2;
+
+C_NAME     DATE_OF_C       FEES                                                 
+---------- --------- ----------                                                 
+computer   01-JUN-14      60000                                                 
+music      01-AUG-13      40000                                                 
+chemistry  01-JUN-17      50000                                                 
+
+SQL> select * from course2;
+
+C_NAME     DATE_OF_C       FEES                                                 
+---------- --------- ----------                                                 
+computer   01-JUN-14      60000                                                 
+music      01-AUG-13      40000                                                 
+chemistry  01-JUN-17      50000                                                 
+
+SQL> select c_name from course2 where fees=(select max(fees) from course2);
+
+C_NAME                                                                          
+----------                                                                      
+computer                                                                        
+
+SQL> insert into course2 values('chemistry', '1-jun-2016', '50000');
+
+1 row created.
+
+SQL> select * from course2;
+
+C_NAME     DATE_OF_C       FEES                                                 
+---------- --------- ----------                                                 
+computer   01-JUN-14      60000                                                 
+music      01-AUG-13      40000                                                 
+chemistry  01-JUN-17      50000                                                 
+chemistry  01-JUN-16      50000                                                 
+
+SQL> select c_name from course2 where date_of_commencement='1-jun-2016';
+
+C_NAME                                                                          
+----------                                                                      
+chemistry                                                                       
+
+SQL> create table course2(c_name varchar (10) primary key, date_of_commencement date, fees number (8));
+create table course2(c_name varchar (10) primary key, date_of_commencement date, fees number (8))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create table course3(c_name varchar (10) primary key, date_of_commencement date, fees number (8));
+
+Table created.
+
+SQL> insert into course3 values('computer', '1-jun-2016', '50000');
+
+1 row created.
+
+SQL> insert into course3 values('computer', '2-jun-2017', '40000');
+insert into course3 values('computer', '2-jun-2017', '40000')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C004035) violated 
+
+
+SQL> insert into course3 values('compute', '2-jun-2017', '40000');
+
+1 row created.
+
+SQL> spool off

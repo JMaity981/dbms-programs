@@ -1,0 +1,187 @@
+SQL> create table patient(p_id varchar(4),p_name char(10),p_age number(2),p_address char(8));
+
+Table created.
+
+SQL> insert into patient values('100','Subrata','33','Jakpur');
+
+1 row created.
+
+SQL> insert into patient values('102','Nilanjan','55','Rampur');
+
+1 row created.
+
+SQL> insert into patient values('107','Suvankar','62','Geokhali');
+
+1 row created.
+
+SQL> insert into patient values('108','Jayanta','28','Tamluk');
+
+1 row created.
+
+SQL> insert into patient values('112','Sourav','42','Kulapara');
+
+1 row created.
+
+SQL> create table doctor(d_id varchar(4),d_name char(10),d_address char(10));
+
+Table created.
+
+SQL> insert into doctor values('d002','Saradindu','Sutahata');
+
+1 row created.
+
+SQL> insert into doctor values('d105','Sushovan','Ghatal');
+
+1 row created.
+
+SQL> insert into doctor values('d107','Debasis','Tamluk');
+
+1 row created.
+
+SQL> create table admitted(p_id varchar(4),d_o_a date);
+
+Table created.
+
+SQL> insert into admitted values('100','01-may-2014');
+
+1 row created.
+
+SQL> insert into admitted values('102','04-mar-2011');
+
+1 row created.
+
+SQL> insert into admitted values('107','29-sep-2014');
+
+1 row created.
+
+SQL> insert into admitted values('108','13-jun-2014');
+
+1 row created.
+
+SQL> create table attend(p_id varchar(4),d_id varchar(4));
+
+Table created.
+
+SQL> insert into attend values('100','d105');
+
+1 row created.
+
+SQL> insert into attend values('102','d002');
+
+1 row created.
+
+SQL> insert into attend values('100','d105');
+
+1 row created.
+
+SQL> insert into attend values('107','d107');
+
+1 row created.
+
+SQL> insert into attend values('102','d002');
+
+1 row created.
+
+SQL> insert into attend values('100','d002');
+
+1 row created.
+
+SQL> insert into attend values('108','d105');
+
+1 row created.
+
+SQL> insert into attend values('100','d105');
+
+1 row created.
+
+SQL> insert into attend values('112','d002');
+
+1 row created.
+
+SQL> insert into attend values('102','d002');
+
+1 row created.
+
+SQL> select * from patient;
+
+P_ID P_NAME          P_AGE P_ADDRES                                             
+---- ---------- ---------- --------                                             
+100  Subrata            33 Jakpur                                               
+102  Nilanjan           55 Rampur                                               
+107  Suvankar           62 Geokhali                                             
+108  Jayanta            28 Tamluk                                               
+112  Sourav             42 Kulapara                                             
+
+SQL> select * from doctor;
+
+D_ID D_NAME     D_ADDRESS                                                       
+---- ---------- ----------                                                      
+d002 Saradindu  Sutahata                                                        
+d105 Sushovan   Ghatal                                                          
+d107 Debasis    Tamluk                                                          
+
+SQL> select * from admitted;
+
+P_ID D_O_A                                                                      
+---- ---------                                                                  
+100  01-MAY-14                                                                  
+102  04-MAR-11                                                                  
+107  29-SEP-14                                                                  
+108  13-JUN-14                                                                  
+
+SQL> select * from attend;
+
+P_ID D_ID                                                                       
+---- ----                                                                       
+100  d105                                                                       
+102  d002                                                                       
+100  d105                                                                       
+107  d107                                                                       
+102  d002                                                                       
+100  d002                                                                       
+108  d105                                                                       
+100  d105                                                                       
+112  d002                                                                       
+102  d002                                                                       
+
+10 rows selected.
+
+SQL> select p_name from patient where p_address in(select d_address from doctor where d_id='d107');
+
+P_NAME                                                                          
+----------                                                                      
+Jayanta                                                                         
+
+SQL> select count(*) from(select d.d_id,count(*)from doctor d,attend a where d.d_id=a.d_id group by a.d_id,a.p_id,d.d_id having count(a.d_id)>2);
+
+  COUNT(*)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> select p_name from doctor d,patient p,attend a where d.d_id=a.d_id and a.p_id=p.p_id and p.p_id=112;
+
+P_NAME                                                                          
+----------                                                                      
+Sourav                                                                          
+
+SQL> select p_name from patient p,admitted a where p.p_id=a.p_id and p_age>50 and d_o_a='04-mar-11';
+
+P_NAME
+----------
+Nilanjan
+
+SQL> select p_name,p_age from patient order by p_age desc;
+
+P_NAME          P_AGE
+---------- ----------
+Suvankar           62
+Nilanjan           55
+Sourav             42  
+Subrata            33
+Jayanta            28
+
+SQL> select distinct p_name from patient p,admitted a where p_name like 'S%' and p_age between 40 and 51;
+
+P_NAME
+----------
+Sourav

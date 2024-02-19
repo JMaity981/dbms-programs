@@ -1,0 +1,44 @@
+SQL> create table patient(p_id varchar(4),p_name char(10),age number(2),p_address char(10));
+
+Table created.
+
+SQL> insert into patient values('i_2','sanatan','20','midnapur');
+
+1 row created.
+
+SQL> insert into patient values('b_2','nilanjan','21','haldia');
+
+1 row created.
+
+SQL> insert into patient values('i_4','sagata','18','purulia');
+
+1 row created.
+
+SQL> insert into patient values('l_1','sushovan','19','midnapur');
+
+1 row created.
+
+SQL> insert into patient values('l_4','jayanta','29','midnapur');
+
+1 row created.
+
+SQL> select * from patient;
+
+P_ID P_NAME            AGE P_ADDRESS                                            
+---- ---------- ---------- ----------                                           
+i_2  sanatan            20 midnapur                                             
+b_2  nilanjan           21 haldia                                               
+i_4  sagata             18 purulia                                              
+l_1  sushovan           19 midnapur                                             
+l_4  jayanta            29 midnapur                                             
+
+SQL> select p_name from patient where age<25;
+
+P_NAME                                                                          
+----------                                                                      
+sanatan                                                                         
+nilanjan                                                                        
+sagata                                                                          
+sushovan                                                                        
+
+SQL> spool off

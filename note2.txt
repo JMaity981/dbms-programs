@@ -1,0 +1,135 @@
+SQL> craete table employee11(e_name char(10),street varchar(10),city char(10));
+SP2-0734: unknown command beginning "craete tab..." - rest of line ignored.
+SQL> create table employee11(e_name char(10),street varchar(10),city char(10));
+
+Table created.
+
+SQL> insert into employee11 values('Madan','srtat','kolkata');
+
+1 row created.
+
+SQL> insert into employee11 values('Khagen','chatarge','Mumbai');
+
+1 row created.
+
+SQL> insert into employee11 values('Lagen','boss','Singapur');
+
+1 row created.
+
+SQL> create table work11(e_name char(10),salary number(7),c_name char(10));
+
+Table created.
+
+SQL> insert into work11 values('Madan','10000','tcs');
+
+1 row created.
+
+SQL> insert into work11 values('Khagen','20500','microsoft');
+
+1 row created.
+
+SQL> insert into work11 values('Lagen','2500','google');
+
+1 row created.
+
+SQL> create table company(c_name char(10),manager_name char(10));
+
+Table created.
+
+SQL> insert into company values('tcs','Debasis');
+
+1 row created.
+
+SQL> insert into company values('microsoft','nilanjan');
+
+1 row created.
+
+SQL> insert into company values('google','sourav');
+
+1 row created.
+
+SQL> create table manager(c_name char(10),manager_name char(10));
+
+Table created.
+
+SQL> drop table manager;
+
+Table dropped.
+
+SQL> alter table company rename to manager;
+
+Table altered.
+
+SQL> create table company(c_name varchar(10),city char(10));
+
+Table created.
+
+SQL> insert into company values('tcs','kolkata');
+
+1 row created.
+
+SQL> insert into company values('microsoft','mummbai');
+
+1 row created.
+
+SQL> insert into company values('google','singpur');
+
+1 row created.
+
+SQL> select * from employee11;
+
+E_NAME     STREET     CITY                                                      
+---------- ---------- ----------                                                
+Madan      srtat      kolkata                                                   
+Khagen     chatarge   Mumbai                                                    
+Lagen      boss       Singapur                                                  
+
+SQL> select * from work11;
+
+E_NAME         SALARY C_NAME                                                    
+---------- ---------- ----------                                                
+Madan           10000 tcs                                                       
+Khagen          20500 microsoft                                                 
+Lagen            2500 google                                                    
+
+SQL> select * from company;
+
+C_NAME     CITY                                                                 
+---------- ----------                                                           
+tcs        kolkata                                                              
+microsoft  mummbai                                                              
+google     singpur                                                              
+
+SQL> select * from manager;
+
+C_NAME     MANAGER_NA                                                           
+---------- ----------                                                           
+tcs        Debasis                                                              
+microsoft  nilanjan                                                             
+google     sourav                                                               
+
+
+SQL> select min(salary)as smallest_payroll from work11;
+
+SMALLEST_PAYROLL                                                                
+----------------                                                                
+            2500                                                                
+
+SQL> select e_name from work11 where salary=(select min(salary)as smallest_payroll from work11);
+
+E_NAME                                                                          
+----------                                                                      
+Lagen                                                                           
+
+
+SQL> select e_name from work11 where c_name='tcs';
+
+E_NAME                                                                          
+----------                                                                      
+Madan                                                                           
+
+SQL> select e_name from work11 where salary>(select avg(salary)from work);
+
+no rows selected
+
+SQL> spool off

@@ -1,0 +1,78 @@
+SQL> create table emp(e_no varchar(4),e_name char(20),dept_name char(20),job_status varchar(15),salary number(7));
+
+Table created.
+
+SQL> insert into emp values('c_1','sourav mishra','computer science','professor','150000');
+
+1 row created.
+
+SQL> insert into emp values('c_2','suvankar giri','computer science','professor','140000');
+
+1 row created.
+
+SQL> insert into emp values('c_2','saradindu das','computer science','gest teacher','40000');
+
+1 row created.
+
+SQL> insert into emp values('c_2','nilanjan chakraborty','computer science','gest teacher','34000');
+
+1 row created.
+
+SQL> insert into emp values('p_1','jayanta maity','physic','professor','134000');
+
+1 row created.
+
+SQL> insert into emp values('p_2','sourav jana','physic','professor','154000');
+
+1 row created.
+
+SQL> insert into emp values('p_3','subrata bera','physic','gest teacher','4000');
+
+1 row created.
+
+SQL> insert into emp values('p_3','sushovan samanta','physic','gest teacher','5000');
+
+1 row created.
+
+SQL> select * from emp;
+
+E_NO E_NAME               DEPT_NAME            JOB_STATUS          SALARY       
+---- -------------------- -------------------- --------------- ----------       
+c_1  sourav mishra        computer science     professor           150000       
+c_2  suvankar giri        computer science     professor           140000       
+c_3  saradindu das        computer science     gest teacher         40000       
+c_4  nilanjan chakraborty computer science     gest teacher         34000       
+p_1  jayanta maity        physic               professor           134000       
+p_2  sourav jana          physic               professor           154000       
+p_3  subrata bera         physic               gest teacher          4000       
+p_4  sushovan samanta     physic               gest teacher          5000       
+
+8 rows selected.
+
+SQL> select count(dept_name) from emp where dept_name='computer science';
+
+COUNT(DEPT_NAME)                                                                
+----------------                                                                
+               4                                                                
+
+SQL> select job_status,sum(salary) from emp group by job_status;
+
+JOB_STATUS      SUM(SALARY)                                                     
+--------------- -----------                                                     
+professor            578000                                                     
+gest teacher          83000                                                     
+
+SQL> select dept_name,sum(salary) from emp group by dept_name;
+
+DEPT_NAME            SUM(SALARY)                                                
+-------------------- -----------                                                
+computer science          364000                                                
+physic                    297000                                                
+
+SQL> select count(job_status) from emp where job_status='professor';
+
+COUNT(JOB_STATUS)                                                               
+-----------------                                                               
+                4                                                               
+
+SQL> spool off

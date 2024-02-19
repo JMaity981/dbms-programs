@@ -1,0 +1,182 @@
+SQL> select r_no from room(select r_no from room where bed_type>3 and price<800)orderd by price asc;
+select r_no from room(select r_no from room where bed_type>3 and price<800)orderd by price asc
+                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select r_no where where bed_type>3 and price<800 orderd by price acs from room;
+select r_no where where bed_type>3 and price<800 orderd by price acs from room
+            *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select r_no where  bed_type>3 and price<800 orderd by price acs from room;
+select r_no where  bed_type>3 and price<800 orderd by price acs from room
+            *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select r_no from room where  bed_type>3 and price<800 orderd by price;
+select r_no from room where  bed_type>3 and price<800 orderd by price
+                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select r_no from room where  bed_type>3 and price<800 orderd by price acs;
+select r_no from room where  bed_type>3 and price<800 orderd by price acs
+                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select r_no from room where  bed_type>3 and price<800 order by price acs;
+select r_no from room where  bed_type>3 and price<800 order by price acs
+                                                                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select r_no from room where  bed_type>3 and price<800;
+
+no rows selected
+
+SQL> select r_no from room where  bed_type>3 and price<1000;
+
+no rows selected
+
+SQL> select r_no from room where  bed_type>3 and price>500;
+
+no rows selected
+
+SQL> select r_no from room where  bed_type>2 and price>500;
+
+R_NO                                                                            
+----                                                                            
+2                                                                               
+04                                                                              
+7                                                                               
+15                                                                              
+
+SQL> select r_no from room where  bed_type>2 and price<800 order by price acs;
+select r_no from room where  bed_type>2 and price<800 order by price acs
+                                                                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select r_no from room where  bed_type>2 and price<800;
+
+no rows selected
+
+SQL> select r_no from room where  bed_type>2 and price<1000;
+
+R_NO                                                                            
+----                                                                            
+2                                                                               
+
+SQL> select r_no,price,bed_type from room where h_id=m12;
+select r_no,price,bed_type from room where h_id=m12
+                                                *
+ERROR at line 1:
+ORA-00904: "M12": invalid identifier 
+
+
+SQL> select r_no,price,bed_type from room where h_id='m12';
+
+R_NO      PRICE   BED_TYPE                                                      
+---- ---------- ----------                                                      
+12          400          1                                                      
+04         1200          3                                                      
+7          1000          3                                                      
+
+SQL> select sum(price)from room where bed_type=3;
+
+SUM(PRICE)                                                                      
+----------                                                                      
+     14000                                                                      
+
+SQL> select sum (price) from room where bed_type=3;
+
+SUM(PRICE)                                                                      
+----------                                                                      
+     14000                                                                      
+
+SQL> select sum (r_no) from room where bed_type=2 and h_id='k02';
+
+ SUM(R_NO)                                                                      
+----------                                                                      
+                                                                                
+
+SQL> select sum (r_no) from room where bed_type=2 and h_id='k02';
+
+ SUM(R_NO)                                                                      
+----------                                                                      
+                                                                                
+
+SQL> select sum (r_no) from room where bed_type=2 and h_id='m12';
+
+ SUM(R_NO)                                                                      
+----------                                                                      
+                                                                                
+
+SQL> select count(r_no)from room where bed_type=2 and h_id='m12';
+
+COUNT(R_NO)                                                                     
+-----------                                                                     
+          0                                                                     
+
+SQL> select count(r_no)from room where bed_type=3 and h_id='m12';
+
+COUNT(R_NO)                                                                     
+-----------                                                                     
+          2                                                                     
+
+SQL> select count(h_id)from hotel where address='mumbai';
+
+COUNT(H_ID)                                                                     
+-----------                                                                     
+          0                                                                     
+
+SQL> select count(h_id)from hotel where address='Mumbai';
+
+COUNT(H_ID)                                                                     
+-----------                                                                     
+          3                                                                     
+
+SQL> create table customer(c_id varchar(4),c_name char(10),city char(10),discount number(5));
+
+Table created.
+
+SQL> insert into customer values('coo1','Suman Pal','Kolkata');
+insert into customer values('coo1','Suman Pal','Kolkata')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> create table customer(c_id varchar(4),c_name char(10),city char(10),discount number(5));
+create table customer(c_id varchar(4),c_name char(10),city char(10),discount number(5))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> drpo table customer;
+SP2-0734: unknown command beginning "drpo table..." - rest of line ignored.
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> create table customer(c_id varchar(4),c_name char(10),city char(10));
+
+Table created.
+
+SQL> insert into customer values('coo1','Suman Pal','Kolkata');
+
+1 row created.
+
+SQL> spool g:collage111.txt

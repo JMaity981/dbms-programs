@@ -1,0 +1,42 @@
+SQL> create table emp(e_no varchar(4),e_name char(10),basic_sal number(5));
+
+Table created.
+
+SQL> insert into emp values('e_1','nilanjan','3000');
+
+1 row created.
+
+SQL> insert into emp values('e_2','subrata','2600');
+
+1 row created.
+
+SQL> insert into emp values('e_3','jayanta','3700');
+
+1 row created.
+
+SQL> insert into emp values('e_5','suvankar','1000');
+
+1 row created.
+
+SQL> insert into emp values('e_4','uttam','9000');
+
+1 row created.
+
+SQL> select * from emp;
+
+E_NO E_NAME      BASIC_SAL                                                      
+---- ---------- ----------                                                      
+e_1  nilanjan         3000                                                      
+e_2  subrata          2600                                                      
+e_3  jayanta          3700                                                      
+e_5  suvankar         1000                                                      
+e_4  uttam            9000                                                      
+
+SQL> select e_name from emp where e_name like 's%';
+
+E_NAME                                                                          
+----------                                                                      
+subrata                                                                         
+suvankar                                                                        
+
+SQL> spool off

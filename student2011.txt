@@ -1,0 +1,52 @@
+SQL> create table student(roll_no varchar(3),s_name char(10),age number(2),address char(10));
+
+Table created.
+
+SQL> insert into student values('001','nilanjan','19','rampur');
+
+1 row created.
+
+SQL> insert into student values('023','subrata','18','midnapur');
+
+1 row created.
+
+SQL> insert into student values('020','sushovan','18','midnapur');
+
+1 row created.
+
+SQL> insert into student values('014','jayanta','28','haldia');
+
+1 row created.
+
+SQL> insert into student values('004','sourav','20','kulapara');
+
+1 row created.
+
+SQL> select * from student;
+
+ROL S_NAME            AGE ADDRESS                                               
+--- ---------- ---------- ----------                                            
+001 nilanjan           19 rampur                                                
+023 subrata            18 midnapur                                              
+020 sushovan           18 midnapur                                              
+014 jayanta            28 haldia                                                
+004 sourav             20 kulapara                                              
+
+SQL> select s_name,age from student order by age desc;
+
+S_NAME            AGE                                                           
+---------- ----------                                                           
+jayanta            28                                                           
+sourav             20                                                           
+nilanjan           19                                                           
+subrata            18                                                           
+sushovan           18                                                           
+
+SQL> select s_name from student where address='midnapur';
+
+S_NAME                                                                          
+----------                                                                      
+subrata                                                                         
+sushovan                                                                        
+
+SQL> spool off

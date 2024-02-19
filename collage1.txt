@@ -1,0 +1,225 @@
+SQL> create table emp(e_name char(10),e_code varchar(4),designation char(9),head char(10),doj date,basic_sal number(6),dept_code varchar(4));
+
+Table created.
+
+SQL> insert into emp values('Subrata','100','assistant','jayanta','12-jan-2018','7000','20');
+
+1 row created.
+
+SQL> insert into emp values('Ram','102','clark','jayanta','14-jul-2017','2000','20');
+
+1 row created.
+
+SQL> insert into emp values('Nilanjan','103','manegar','jayanta','10-feb-2018','8000','20');
+
+1 row created.
+
+SQL> insert into emp values('Jayanta','105','head','jayanta','20-mar-2017','12000','20');
+
+1 row created.
+
+SQL> insert into emp values('Ramesh','500','assistant','Sourav','11-apr-2018','6000','30');
+
+1 row created.
+
+SQL> insert into emp values('Amar','502','clark','Sourav','12-jun-2017','1000','30');
+
+1 row created.
+
+SQL> insert into emp values('Sourav','503','head','Sourav','04-jan-2017','14000','30');
+
+1 row created.
+
+SQL> insert into emp values('Tusar','600','assistant','Utpal','18-oct-2018','5000','40');
+
+1 row created.
+
+SQL> insert into emp values('Ranjan','702','assistant','Kuntal','15-may-2016','6000','10');
+
+1 row created.
+
+SQL> create table dept(dept_code varchar(4),dept_name char(20),floor number(2));
+
+Table created.
+
+SQL> insert into dept values('10','programmer','4');
+
+1 row created.
+
+SQL> insert into dept values('20','developer','3');
+
+1 row created.
+
+SQL> insert into dept values('30','tester','2');
+
+1 row created.
+
+SQL> insert into dept values('40','seller','1');
+
+1 row created.
+
+SQL> select * from emp;
+
+E_NAME     E_CO DESIGNATI HEAD       DOJ        BASIC_SAL DEPT                  
+---------- ---- --------- ---------- --------- ---------- ----                  
+Subrata    100  assistant jayanta    12-JAN-18       7000 20                    
+Ram        102  clark     jayanta    14-JUL-17       2000 20                    
+Nilanjan   103  manegar   jayanta    10-FEB-18       8000 20                    
+Jayanta    105  head      jayanta    20-MAR-17      12000 20                    
+Ramesh     500  assistant Sourav     11-APR-18       6000 30                    
+Amar       502  clark     Sourav     12-JUN-17       1000 30                    
+Sourav     503  head      Sourav     04-JAN-17      14000 30                    
+Tusar      600  assistant Utpal      18-OCT-18       5000 40                    
+Ranjan     702  assistant Kuntal     15-MAY-16       6000 10                    
+
+9 rows selected.
+
+SQL> select * from dept;
+
+DEPT DEPT_NAME                 FLOOR                                            
+---- -------------------- ----------                                            
+10   programmer                    4                                            
+20   developer                     3                                            
+30   tester                        2                                            
+40   seller                        1                                            
+
+SQL> select e_name from emp where designation='assistant' and dept_code=30;
+
+E_NAME                                                                          
+----------                                                                      
+Ramesh                                                                          
+
+SQL> select e_name from emp where dept_code not in(10,40);
+
+E_NAME                                                                          
+----------                                                                      
+Subrata                                                                         
+Ram                                                                             
+Nilanjan                                                                        
+Jayanta                                                                         
+Ramesh                                                                          
+Amar                                                                            
+Sourav                                                                          
+
+7 rows selected.
+
+SQL> select distinct designation from emp;
+
+DESIGNATI                                                                       
+---------                                                                       
+head                                                                            
+assistant                                                                       
+manegar                                                                         
+clark                                                                           
+
+SQL> select e_name,basic_sal,basic*0.1"pf",basic_sal*0.3"hra";
+select e_name,basic_sal,basic*0.1"pf",basic_sal*0.3"hra"
+                                                       *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select e_name,basic_sal,basic*0.1"pf",basic_sal*0.3"hra"  form emp;
+select e_name,basic_sal,basic*0.1"pf",basic_sal*0.3"hra"  form emp
+                                                          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select e_name,basic_sal,basic*0.1"pf",basic_sal*0.3"hra"  from emp;
+select e_name,basic_sal,basic*0.1"pf",basic_sal*0.3"hra"  from emp
+                        *
+ERROR at line 1:
+ORA-00904: "BASIC": invalid identifier 
+
+
+SQL> select e_name,basic_sal,basic_sal*0.1"pf",basic_sal*0.3"hra"  from emp;
+
+E_NAME      BASIC_SAL         pf        hra                                     
+---------- ---------- ---------- ----------                                     
+Subrata          7000        700       2100                                     
+Ram              2000        200        600                                     
+Nilanjan         8000        800       2400                                     
+Jayanta         12000       1200       3600                                     
+Ramesh           6000        600       1800                                     
+Amar             1000        100        300                                     
+Sourav          14000       1400       4200                                     
+Tusar            5000        500       1500                                     
+Ranjan           6000        600       1800                                     
+
+9 rows selected.
+
+SQL> select dept_code,avg(basic_sal),count(e_code) from emp group by dept_code;
+
+DEPT AVG(BASIC_SAL) COUNT(E_CODE)                                               
+---- -------------- -------------                                               
+20             7250             4                                               
+10             6000             1                                               
+40             5000             1                                               
+30             7000             3                                               
+
+SQL> select dept_code,min(basic_sal) from emp group by dept_code;
+
+DEPT MIN(BASIC_SAL)                                                             
+---- --------------                                                             
+20             2000                                                             
+10             6000                                                             
+40             5000                                                             
+30             1000                                                             
+
+SQL> select * from emp where basic_sal=(select max(basic_sal) as basic_sal from emp where basic_sal<(select max(basic_sal)from emp));
+
+E_NAME     E_CO DESIGNATI HEAD       DOJ        BASIC_SAL DEPT                  
+---------- ---- --------- ---------- --------- ---------- ----                  
+Jayanta    105  head      jayanta    20-MAR-17      12000 20                    
+
+SQL> select e_name from emp where e_name like '%r';
+
+no rows selected
+
+SQL> select e_name from emp where e_name like 'r%';
+
+no rows selected
+
+SQL> select e_name from emp where e_name like 'r%';
+
+no rows selected
+
+SQL> select e_name from emp where e_name like 'R%';
+
+E_NAME                                                                          
+----------                                                                      
+Ram                                                                             
+Ramesh                                                                          
+Ranjan                                                                          
+
+SQL> update emp  set basic_sal=basic_sal+500 where e_code=102;
+
+1 row updated.
+
+SQL> select * from emp;
+
+E_NAME     E_CO DESIGNATI HEAD       DOJ        BASIC_SAL DEPT                  
+---------- ---- --------- ---------- --------- ---------- ----                  
+Subrata    100  assistant jayanta    12-JAN-18       7000 20                    
+Ram        102  clark     jayanta    14-JUL-17       2500 20                    
+Nilanjan   103  manegar   jayanta    10-FEB-18       8000 20                    
+Jayanta    105  head      jayanta    20-MAR-17      12000 20                    
+Ramesh     500  assistant Sourav     11-APR-18       6000 30                    
+Amar       502  clark     Sourav     12-JUN-17       1000 30                    
+Sourav     503  head      Sourav     04-JAN-17      14000 30                    
+Tusar      600  assistant Utpal      18-OCT-18       5000 40                    
+Ranjan     702  assistant Kuntal     15-MAY-16       6000 10                    
+
+9 rows selected.
+
+SQL> select e_name,designation from emp e,dept d where e.dept_code=d.dept_code and floor=3;
+
+E_NAME     DESIGNATI                                                            
+---------- ---------                                                            
+Subrata    assistant                                                            
+Ram        clark                                                                
+Nilanjan   manegar                                                              
+Jayanta    head                                                                 
+
+SQL> spool off

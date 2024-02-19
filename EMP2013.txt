@@ -1,0 +1,134 @@
+SQL> create table EMP(e_no number(5), e_name varchar(8), e_address varchar(8));
+
+Table created.
+
+SQL> insert into EMP values('20','Jayanta','Tamluk');
+
+1 row created.
+
+SQL> insert into EMP values('29','Swagata','Haldia');
+
+1 row created.
+
+SQL> insert into EMP values('9','Ayan','Kolkata');
+
+1 row created.
+
+SQL> insert into EMP values('65','Sumit','Siliguri');
+
+1 row created.
+
+SQL> insert into EMP values('3','Arpan','Malda');
+
+1 row created.
+
+SQL> insert into EMP values('15','Kumar','Sankrail');
+
+1 row created.
+
+SQL> insert into EMP values('12','Modon','Malda');
+
+1 row created.
+
+SQL> create table PROJECT(p_no varchar(5),p_name varchar(3));
+
+Table created.
+
+SQL> insert into PROJECT values('P1','ARC');
+
+1 row created.
+
+SQL> insert into PROJECT values('P2','SAP');
+
+1 row created.
+
+SQL> insert into PROJECT values('P3','RAC');
+
+1 row created.
+
+SQL> create table WORK(e_no number(5),p_no varchar(5));
+
+Table created.
+
+SQL> insert into WORK values('29','P3');
+
+1 row created.
+
+SQL> insert into WORK values('20','P2');
+
+1 row created.
+
+SQL> insert into WORK values('3','P2');
+
+1 row created.
+
+SQL> insert into WORK values('15','P1');
+
+1 row created.
+
+SQL> insert into WORK values('20','P3');
+
+1 row created.
+
+SQL> insert into WORK values('65','P2');
+
+1 row created.
+
+SQL> select * from EMP;
+
+      E_NO E_NAME   E_ADDRES                                                    
+---------- -------- --------                                                    
+        20 Jayanta  Tamluk                                                      
+        29 Swagata  Haldia                                                      
+         9 Ayan     Kolkata                                                     
+        65 Sumit    Siliguri                                                    
+         3 Arpan    Malda                                                       
+        15 Kumar    Sankrail                                                    
+        12 Modon    Malda                                                       
+
+7 rows selected.
+
+SQL> select * from PROJECT;
+
+P_NO  P_N                                                                       
+----- ---                                                                       
+P1    ARC                                                                       
+P2    SAP                                                                       
+P3    RAC                                                                       
+
+SQL> select * from WORK;
+
+      E_NO P_NO                                                                 
+---------- -----                                                                
+        29 P3                                                                   
+        20 P2                                                                   
+         3 P2                                                                   
+        15 P1                                                                   
+        20 P3                                                                   
+        65 P2                                                                   
+
+6 rows selected.
+
+SQL> select e_name from EMP e,PROJECT p,WORK w where e.e_no=w.e_no and p.p_no=w.p_no and p_name='SAP';
+
+E_NAME                                                                          
+--------                                                                        
+Jayanta                                                                         
+Arpan                                                                           
+Sumit                                                                           
+
+SQL> select distinct e_name from EMP, WORK where EMP.e_no in(select distinct e_no from EMP minus select distinct e_no from WORK);
+
+E_NAME                                                                          
+--------                                                                        
+Modon                                                                           
+Ayan                                                                            
+
+SQL> select e_name from EMP where e_name like 'A%';
+
+E_NAME                                                                          
+--------                                                                        
+Ayan                                                                            
+Arpan                                                                           
+
+SQL> Spool off;

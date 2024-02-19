@@ -1,0 +1,3 @@
+1>w.a.p. in c++ to show how to reverse a string using pointers and arrays.
+2> evenadd ta check karate habe,
+3>pratics11 dekhte habe.

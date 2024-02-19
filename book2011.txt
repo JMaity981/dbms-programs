@@ -1,0 +1,71 @@
+SQL> create table book(title char(7),author char(10),price number(4),publisher char(10));
+
+Table created.
+
+SQL> insert into book values('java','balaguru','300','parul');
+
+1 row created.
+
+SQL> insert into book values('c','baluja','380','chaya');
+
+1 row created.
+
+SQL> insert into book values('stack','debasis','500','maya');
+
+1 row created.
+
+SQL> insert into book values('network','chopra','1300','parul');
+
+1 row created.
+
+SQL> insert into book values('queue','debasis','800','maya');
+
+1 row created.
+
+SQL> insert into book values('php','sribastab','854','chaya');
+
+1 row created.
+
+SQL> insert into book values('oracle','moulik','932','chaya');
+
+1 row created.
+
+SQL> select * from book;
+
+TITLE   AUTHOR          PRICE PUBLISHER                                         
+------- ---------- ---------- ----------                                        
+java    balaguru          300 parul                                             
+c       baluja            380 chaya                                             
+stack   debasis           500 maya                                              
+network chopra           1300 parul                                             
+queue   debasis           800 maya                                              
+php     sribastab         854 chaya                                             
+oracle  moulik            932 chaya                                             
+
+7 rows selected.
+
+SQL> select title from (select title from book order by price desc) where rownum<=5;
+
+TITLE                                                                           
+-------                                                                         
+network                                                                         
+oracle                                                                          
+php                                                                             
+queue                                                                           
+stack                                                                           
+
+SQL> select title from book order by title asc;
+
+TITLE                                                                           
+-------                                                                         
+c                                                                               
+java                                                                            
+network                                                                         
+oracle                                                                          
+php                                                                             
+queue                                                                           
+stack                                                                           
+
+7 rows selected.
+
+SQL> spool off

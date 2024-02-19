@@ -1,0 +1,130 @@
+SQL> INSERT INTO BOOK(TITLE CHAR(100, AUTHOR CHAR(15), PRICE NUMBER(4), PUBLISHER CHAR(10));
+INSERT INTO BOOK(TITLE CHAR(100, AUTHOR CHAR(15), PRICE NUMBER(4), PUBLISHER CHAR(10))
+                       *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> INSERT INTO BOOK(TITLE CHAR(10), AUTHOR CHAR(15), PRICE NUMBER(4), PUBLISHER CHAR(10));
+INSERT INTO BOOK(TITLE CHAR(10), AUTHOR CHAR(15), PRICE NUMBER(4), PUBLISHER CHAR(10))
+                       *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> CREATE INTO BOOK(TITLE CHAR(10), AUTHOR CHAR(15), PRICE NUMBER(4), PUBLISHER CHAR(10));
+CREATE INTO BOOK(TITLE CHAR(10), AUTHOR CHAR(15), PRICE NUMBER(4), PUBLISHER CHAR(10))
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command 
+
+
+SQL> CREATE TABLE BOOK(TITLE CHAR(10), AUTHOR CHAR(15), PRICE NUMBER(4), PUBLISHER CHAR(10));
+
+Table created.
+
+SQL> INSERT INTO BOOK('C','BALAGURUSAMI','200','ANSI');
+INSERT INTO BOOK('C','BALAGURUSAMI','200','ANSI')
+                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> INSERT INTO BOOK VALUES('C','BALAGURUSAMI','200','ANSI');
+
+1 row created.
+
+SQL> INSERT INTO BOOK VALUES('C++','BALAGURUSAMI','250','ANSI');
+
+1 row created.
+
+SQL> INSERT INTO BOOK VALUES('JAVA','SUSOVON','370','PLX');
+
+1 row created.
+
+SQL> INSERT INTO BOOK VALUES('DATA STR.','D SAMANTA','450','PARUL');
+
+1 row created.
+
+SQL> INSERT INTO BOOK VALUES('ORACALE','MICHEAL','899','MAXPRANE');
+
+1 row created.
+
+SQL> INSERT INTO BOOK VALUES('LPP','SURENDRANATH','120','MATH');
+
+1 row created.
+
+SQL> INSERT INTO BOOK VALUES('NEWMERICAL','SAHOO','220','PARUL');
+
+1 row created.
+
+SQL> SELECT * FROM BOOK;
+
+TITLE      AUTHOR               PRICE PUBLISHER                                 
+---------- --------------- ---------- ----------                                
+C          BALAGURUSAMI           200 ANSI                                      
+C++        BALAGURUSAMI           250 ANSI                                      
+JAVA       SUSOVON                370 PLX                                       
+DATA STR.  D SAMANTA              450 PARUL                                     
+ORACALE    MICHEAL                899 MAXPRANE                                  
+LPP        SURENDRANATH           120 MATH                                      
+NEWMERICAL SAHOO                  220 PARUL                                     
+
+7 rows selected.
+
+SQL> SELECT TITLE FROM BOOK ORDER BY PRICE DESC WHERE ROWNUM<=5;
+SELECT TITLE FROM BOOK ORDER BY PRICE DESC WHERE ROWNUM<=5
+                                           *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT TITLE FROM (SELECT TITLE FROM BOOK ORDER BY PRICE DESC) WHERE ROWNUM<=5;
+
+TITLE                                                                           
+----------                                                                      
+ORACALE                                                                         
+DATA STR.                                                                       
+JAVA                                                                            
+C++                                                                             
+NEWMERICAL                                                                      
+
+SQL> SELECT TITLE FROM (SELECT TITLE FROM BOOK ORDER BY PRICE DESC) WHERE ROWNUM=5;
+
+no rows selected
+
+SQL> SELECT TITLE FROM (SELECT TITLE FROM BOOK ORDER BY PRICE DESC) WHERE ROWNUM<=5;
+
+TITLE                                                                           
+----------                                                                      
+ORACALE                                                                         
+DATA STR.                                                                       
+JAVA                                                                            
+C++                                                                             
+NEWMERICAL                                                                      
+
+SQL> SELECT * FROM (SELECT TITLE FROM BOOK ORDER BY PRICE DESC) WHERE ROWNUM<=5;
+
+TITLE                                                                           
+----------                                                                      
+ORACALE                                                                         
+DATA STR.                                                                       
+JAVA                                                                            
+C++                                                                             
+NEWMERICAL                                                                      
+
+SQL> SELECT TITLE FROM BOOK ORDER BY TITLE ASC;
+
+TITLE                                                                           
+----------                                                                      
+C                                                                               
+C++                                                                             
+DATA STR.                                                                       
+JAVA                                                                            
+LPP                                                                             
+NEWMERICAL                                                                      
+ORACALE                                                                         
+
+7 rows selected.
+
+SQL> SPOOL OFF;
